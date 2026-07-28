@@ -17,6 +17,27 @@ function shouldTriggerFlag(question, answer) {
     return String(answer).trim() !== '';
 }
 
+function normalizeFlag(flag) {
+    if (!flag) {
+        return null;
+    }
+    if (typeof flag === 'string') {
+        return {
+            id: flag.toLowerCase().replace(/\s+/g, '_'),
+            label: flag,
+            severity: 'low'
+        };
+    }
+    if (typeof flag === 'object' && flag.id && flag.label) {
+        return {
+            id: flag.id,
+            label: flag.label,
+            severity: ['critical', 'high', 'medium', 'low'].includes(flag.severity) ? flag.severity : 'low'
+        };
+    }
+    return null;
+}
+
 export async function detectRedFlags(protocolKey) {
     const protocol = await loadProtocolJson(protocolKey);
     if (!protocol || !Array.isArray(protocol.questions)) {
@@ -28,7 +49,7 @@ export async function detectRedFlags(protocolKey) {
         return [];
     }
 
-    const flags = new Set();
+    const flagMap = new Map();
 
     protocol.questions.forEach(question => {
         if (!question.flags || !Array.isArray(question.flags)) {
@@ -40,8 +61,16 @@ export async function detectRedFlags(protocolKey) {
             return;
         }
 
-        question.flags.forEach(flag => flags.add(flag));
+        question.flags.forEach(flag => {
+            const normalized = normalizeFlag(flag);
+            if (!normalized) {
+                return;
+            }
+            if (!flagMap.has(normalized.id)) {
+                flagMap.set(normalized.id, normalized);
+            }
+        });
     });
 
-    return Array.from(flags);
+    return Array.from(flagMap.values());
 }

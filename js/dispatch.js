@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     callTimeInput.value = formatDateTimeLocal(now);
 
     backBtn.addEventListener('click', () => {
-        window.location.href = 'home.html';
+        window.location.href = '../index.html';
     });
 
     form.addEventListener('submit', (e) => {

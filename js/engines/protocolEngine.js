@@ -265,7 +265,8 @@ function handleNavigation(direction) {
     }
 
     if (nextIndex >= currentProtocol.questions.length) {
-        validationMessage.textContent = 'すべての質問に回答しました。';
+        saveAnswers();
+        window.location.href = 'result.html';
         return;
     }
 

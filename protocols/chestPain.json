@@ -7,28 +7,52 @@
       "type": "yesno",
       "label": "突然発症ですか？",
       "required": true,
-      "flags": ["突然発症"]
+      "flags": [
+        {
+          "id": "sudden_onset",
+          "label": "突然発症",
+          "severity": "high"
+        }
+      ]
     },
     {
       "id": "coldSweat",
       "type": "yesno",
       "label": "冷汗はありますか？",
       "required": false,
-      "flags": ["冷汗"]
+      "flags": [
+        {
+          "id": "cold_sweat",
+          "label": "冷汗",
+          "severity": "medium"
+        }
+      ]
     },
     {
       "id": "breathingDifficulty",
       "type": "yesno",
       "label": "息苦しさや呼吸困難はありますか？",
       "required": false,
-      "flags": ["呼吸困難"]
+      "flags": [
+        {
+          "id": "breathing_difficulty",
+          "label": "呼吸困難",
+          "severity": "critical"
+        }
+      ]
     },
     {
       "id": "consciousnessImpairment",
       "type": "yesno",
       "label": "意識障害がありますか？",
       "required": false,
-      "flags": ["意識障害"]
+      "flags": [
+        {
+          "id": "consciousness_impairment",
+          "label": "意識障害",
+          "severity": "critical"
+        }
+      ]
     },
     {
       "id": "radiation",
@@ -36,7 +60,13 @@
       "label": "痛みはどこに放散していますか？",
       "options": ["なし", "左肩", "左腕", "背中", "顎"],
       "required": true,
-      "flags": ["放散痛"]
+      "flags": [
+        {
+          "id": "radiation_pain",
+          "label": "放散痛",
+          "severity": "high"
+        }
+      ]
     },
     {
       "id": "chestPainSeverity",

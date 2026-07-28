@@ -28,7 +28,7 @@ export function initApp() {
         button.addEventListener('click', () => {
             const symptom = button.dataset.type;
             localStorage.setItem('symptom', symptom);
-            alert('選択：' + button.innerText);
+            window.location.href = 'protocol.html';
         });
     });
 }
