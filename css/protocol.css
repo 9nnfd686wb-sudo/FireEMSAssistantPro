@@ -1,0 +1,113 @@
+/* protocol page styles */
+.protocol-container {
+    max-width: 840px;
+    margin: 1.5rem auto;
+    padding: 1rem 1.5rem;
+}
+
+.protocol-card {
+    padding: 1.75rem;
+    background: #ffffff;
+    border-radius: 20px;
+    border: 1px solid rgba(11,79,140,0.18);
+    box-shadow: 0 12px 28px rgba(15,75,140,0.1);
+}
+
+.protocol-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.protocol-progress {
+    color: #0b4f8c;
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+.protocol-question-title {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #0b4f8c;
+    line-height: 1.2;
+}
+
+.question-block {
+    margin-bottom: 1.5rem;
+}
+
+.question-block label {
+    display: block;
+    margin-bottom: 0.8rem;
+    font-weight: 700;
+    color: #102a43;
+    font-size: 1rem;
+}
+
+.question-block .option-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.question-block .option-group label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.9rem 1rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 14px;
+    background: #f8fafc;
+    cursor: pointer;
+    min-width: 130px;
+}
+
+.question-block input[type="radio"] {
+    accent-color: #0b4f8c;
+}
+
+.question-block input,
+.question-block select,
+.question-block textarea {
+    width: 100%;
+    padding: 1rem 1.1rem;
+    border-radius: 14px;
+    border: 1px solid #cbd5e1;
+    font-size: 1rem;
+    background: #f8fafc;
+}
+
+.question-block textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+#validationMessage {
+    margin-bottom: 1rem;
+    color: #c53030;
+    font-size: 0.98rem;
+    min-height: 1.2rem;
+}
+
+.protocol-actions {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+@media (max-width: 780px) {
+    .protocol-container {
+        padding: 1rem 1rem;
+    }
+
+    .protocol-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .question-block .option-group {
+        flex-direction: column;
+    }
+}

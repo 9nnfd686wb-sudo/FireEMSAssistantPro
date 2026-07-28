@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>結果</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        .result-card {
+            max-width: 900px;
+            margin: 28px auto;
+            padding: 28px;
+            background: rgba(15, 43, 75, 0.96);
+            border-radius: 22px;
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 18px 40px rgba(1, 19, 43, 0.35);
+        }
+
+        .result-card h1,
+        .result-card h2 {
+            margin-bottom: 16px;
+            color: #ffffff;
+        }
+
+        .result-card p {
+            color: rgba(255,255,255,0.88);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .red-flag-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            gap: 12px;
+        }
+
+        .red-flag-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 18px 20px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.08);
+            font-size: 18px;
+        }
+
+        .red-flag-icon {
+            font-size: 22px;
+            color: #ffdd57;
+        }
+
+        .no-flags {
+            color: #d7e3ff;
+            font-size: 18px;
+        }
+
+        @media (max-width: 900px) {
+            .result-card {
+                margin: 18px 14px;
+                padding: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+<header class="header">
+    <div class="container">
+        <h1>判定結果</h1>
+        <p>レッドフラッグを確認してください</p>
+    </div>
+</header>
+<main class="container">
+    <section class="card result-card">
+        <h2 id="protocolName">対象プロトコル</h2>
+        <p>以下は検出されたレッドフラッグです。</p>
+        <ul id="redFlagList" class="red-flag-list"></ul>
+        <p id="noFlagsMessage" class="no-flags" hidden>レッドフラッグは検出されませんでした。</p>
+    </section>
+</main>
+<script type="module" src="../js/router.js"></script>
+<script type="module" src="../js/pages/result.js"></script>
+</body>
+</html>

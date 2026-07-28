@@ -1,0 +1,37 @@
+{
+  "protocolId": "common",
+  "protocolName": "共通質問",
+  "questions": [
+    {
+      "id": "consciousness",
+      "type": "yesno",
+      "label": "意識はありますか？",
+      "required": true
+    },
+    {
+      "id": "breathing",
+      "type": "yesno",
+      "label": "呼吸はありますか？",
+      "required": true
+    },
+    {
+      "id": "bleeding",
+      "type": "yesno",
+      "label": "大量出血はありますか？",
+      "required": true
+    },
+    {
+      "id": "skin",
+      "type": "select",
+      "label": "皮膚の状態は？",
+      "options": ["正常", "蒼白", "チアノーゼ", "発汗"],
+      "required": true
+    },
+    {
+      "id": "note",
+      "type": "text",
+      "label": "その他の症状があれば入力してください",
+      "required": false
+    }
+  ]
+}

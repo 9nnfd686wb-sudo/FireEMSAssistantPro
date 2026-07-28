@@ -1,0 +1,56 @@
+{
+  "protocolId": "chestPain",
+  "protocolName": "胸痛プロトコル",
+  "questions": [
+    {
+      "id": "chestPainOnset",
+      "type": "yesno",
+      "label": "突然発症ですか？",
+      "required": true,
+      "flags": ["突然発症"]
+    },
+    {
+      "id": "coldSweat",
+      "type": "yesno",
+      "label": "冷汗はありますか？",
+      "required": false,
+      "flags": ["冷汗"]
+    },
+    {
+      "id": "breathingDifficulty",
+      "type": "yesno",
+      "label": "息苦しさや呼吸困難はありますか？",
+      "required": false,
+      "flags": ["呼吸困難"]
+    },
+    {
+      "id": "consciousnessImpairment",
+      "type": "yesno",
+      "label": "意識障害がありますか？",
+      "required": false,
+      "flags": ["意識障害"]
+    },
+    {
+      "id": "radiation",
+      "type": "select",
+      "label": "痛みはどこに放散していますか？",
+      "options": ["なし", "左肩", "左腕", "背中", "顎"],
+      "required": true,
+      "flags": ["放散痛"]
+    },
+    {
+      "id": "chestPainSeverity",
+      "type": "number",
+      "label": "痛みの強さ（0〜10）を入力してください",
+      "min": 0,
+      "max": 10,
+      "required": true
+    },
+    {
+      "id": "nausea",
+      "type": "yesno",
+      "label": "吐き気はありますか？",
+      "required": false
+    }
+  ]
+}

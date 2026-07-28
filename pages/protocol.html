@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>プロトコル</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/protocol.css">
+</head>
+<body>
+<header class="header">
+    <div class="container">
+        <h1>プロトコル</h1>
+        <p>質問に回答してください</p>
+    </div>
+</header>
+<main class="container protocol-container">
+    <section class="card protocol-card">
+        <h2>プロトコルを選択</h2>
+        <div class="question-block">
+            <label for="protocolSelect">プロトコル</label>
+            <select id="protocolSelect" name="protocolSelect">
+                <option value="common">共通質問</option>
+                <option value="chestPain">胸痛プロトコル</option>
+            </select>
+        </div>
+        <div class="protocol-actions">
+            <button id="loadProtocolBtn" type="button" class="primary-btn">質問を開始</button>
+        </div>
+    </section>
+
+    <section class="card protocol-card" id="questionsSection" hidden>
+        <div class="protocol-header">
+            <span id="progressText" class="protocol-progress">質問 0 / 0</span>
+            <h2 id="questionText" class="protocol-question-title">質問文がここに入ります</h2>
+        </div>
+        <div id="questionContainer"></div>
+        <div id="validationMessage" class="error-message" aria-live="polite"></div>
+        <div class="protocol-actions">
+            <button id="prevBtn" type="button" class="secondary-btn">前へ</button>
+            <button id="nextBtn" type="button" class="primary-btn">次へ</button>
+        </div>
+    </section>
+</main>
+<script type="module" src="../js/router.js"></script>
+<script type="module" src="../js/engines/protocolEngine.js"></script>
+</body>
+</html>
