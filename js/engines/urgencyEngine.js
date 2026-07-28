@@ -49,7 +49,7 @@ function buildDefaultUrgency() {
         priority: 4,
         label: '低',
         severity: 'low',
-        stars: 1,
+        stars: 2,
         color: 'blue',
         reasons: []
     };

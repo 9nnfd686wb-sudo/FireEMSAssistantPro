@@ -14,6 +14,19 @@
     "color": "red"
   },
   {
+    "id": "level1_respiratory_arrest",
+    "protocol": "chestPain",
+    "conditions": [
+      "respiratory_arrest"
+    ],
+    "level": "LEVEL1",
+    "priority": 1,
+    "severity": "critical",
+    "label": "最優先",
+    "stars": 5,
+    "color": "red"
+  },
+  {
     "id": "level2_chestPain",
     "protocol": "chestPain",
     "conditions": [

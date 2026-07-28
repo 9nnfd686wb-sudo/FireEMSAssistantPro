@@ -1,6 +1,12 @@
 import { loadProtocolJson, loadProtocolAnswers } from '../storage.js';
 
-function shouldTriggerFlag(question, answer) {
+function shouldTriggerFlag(question, answer, flag) {
+    if (flag && flag.triggerOnFalse) {
+        if (question.type === 'yesno') {
+            return answer === false;
+        }
+    }
+
     if (answer === undefined || answer === null || answer === '') {
         return false;
     }
@@ -57,11 +63,11 @@ export async function detectRedFlags(protocolKey) {
         }
 
         const answer = saved.answers[question.id];
-        if (!shouldTriggerFlag(question, answer)) {
-            return;
-        }
-
         question.flags.forEach(flag => {
+            if (!shouldTriggerFlag(question, answer, flag)) {
+                return;
+            }
+
             const normalized = normalizeFlag(flag);
             if (!normalized) {
                 return;

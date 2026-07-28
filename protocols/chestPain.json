@@ -3,6 +3,33 @@
   "protocolName": "胸痛プロトコル",
   "questions": [
     {
+      "id": "consciousnessImpairment",
+      "type": "yesno",
+      "label": "意識障害がありますか？",
+      "required": true,
+      "flags": [
+        {
+          "id": "consciousness_impairment",
+          "label": "意識障害",
+          "severity": "critical"
+        }
+      ]
+    },
+    {
+      "id": "breathingStatus",
+      "type": "yesno",
+      "label": "呼吸はありますか？",
+      "required": true,
+      "flags": [
+        {
+          "id": "respiratory_arrest",
+          "label": "呼吸停止",
+          "severity": "critical",
+          "triggerOnFalse": true
+        }
+      ]
+    },
+    {
       "id": "chestPainOnset",
       "type": "yesno",
       "label": "突然発症ですか？",
@@ -11,6 +38,27 @@
         {
           "id": "sudden_onset",
           "label": "突然発症",
+          "severity": "high"
+        }
+      ]
+    },
+    {
+      "id": "chestPainLocation",
+      "type": "select",
+      "label": "胸痛の部位はどこですか？",
+      "options": ["左胸部", "右胸部", "中央胸部", "上胸部", "その他"],
+      "required": true
+    },
+    {
+      "id": "radiation",
+      "type": "select",
+      "label": "痛みはどこに放散していますか？",
+      "options": ["なし", "左肩", "左腕", "背中", "顎"],
+      "required": true,
+      "flags": [
+        {
+          "id": "radiation_pain",
+          "label": "放散痛",
           "severity": "high"
         }
       ]
@@ -31,40 +79,13 @@
     {
       "id": "breathingDifficulty",
       "type": "yesno",
-      "label": "息苦しさや呼吸困難はありますか？",
+      "label": "呼吸困難がありますか？",
       "required": false,
       "flags": [
         {
           "id": "breathing_difficulty",
           "label": "呼吸困難",
           "severity": "critical"
-        }
-      ]
-    },
-    {
-      "id": "consciousnessImpairment",
-      "type": "yesno",
-      "label": "意識障害がありますか？",
-      "required": false,
-      "flags": [
-        {
-          "id": "consciousness_impairment",
-          "label": "意識障害",
-          "severity": "critical"
-        }
-      ]
-    },
-    {
-      "id": "radiation",
-      "type": "select",
-      "label": "痛みはどこに放散していますか？",
-      "options": ["なし", "左肩", "左腕", "背中", "顎"],
-      "required": true,
-      "flags": [
-        {
-          "id": "radiation_pain",
-          "label": "放散痛",
-          "severity": "high"
         }
       ]
     },
@@ -77,9 +98,15 @@
       "required": true
     },
     {
-      "id": "nausea",
-      "type": "yesno",
-      "label": "吐き気はありますか？",
+      "id": "medicalHistory",
+      "type": "text",
+      "label": "既往歴があれば入力してください",
+      "required": false
+    },
+    {
+      "id": "medications",
+      "type": "text",
+      "label": "内服薬があれば入力してください",
       "required": false
     }
   ]

@@ -17,41 +17,114 @@
     </div>
 </header>
 <main class="container">
-    <section class="result-summary">
-        <article class="card summary-card">
-            <h2>プロトコル名</h2>
-            <p id="protocolName">読み込み中...</p>
-        </article>
+    <section class="page-header">
+        <div class="page-title">
+            <h1>判定結果</h1>
+            <p>消防指令員が最初に確認する画面です。</p>
+        </div>
+    </section>
+
+    <section class="dispatch-header">
+        <div class="dispatch-item">
+            <strong>症状</strong>
+            <span id="dispatchSymptom">胸痛</span>
+        </div>
+        <div class="dispatch-item">
+            <strong>判定時刻</strong>
+            <span id="dispatchTime">--:--</span>
+        </div>
+        <div class="dispatch-item">
+            <strong>プロトコルVer</strong>
+            <span id="dispatchVersion">1.0</span>
+        </div>
+    </section>
+
+    <section class="summary-grid">
         <article class="card summary-card urgency-card" id="urgencySection" hidden aria-live="polite">
-            <h2>🚨 緊急度</h2>
-            <hr class="section-divider">
+            <div class="urgency-top-row">
+                <h2>🚨 緊急度</h2>
+                <span id="recommendedAction" class="action-badge">推奨対応</span>
+            </div>
             <p id="urgencyStars" class="urgency-stars">★★★★★</p>
             <p id="urgencyLevel" class="urgency-level">LEVEL1</p>
             <p id="urgencyLabel" class="urgency-label">最優先</p>
-            <div>
-                <h3>判定理由</h3>
-                <ul id="urgencyReasons" class="urgency-reasons"></ul>
+            <hr class="section-divider">
+            <h3>判定理由</h3>
+            <ul id="urgencyReasons" class="urgency-reasons"></ul>
+        </article>
+        <article class="card summary-card protocol-card">
+            <h2>プロトコル</h2>
+            <p id="protocolName">読み込み中...</p>
+        </article>
+    </section>
+
+    <section class="detail-grid" aria-label="レッドフラッグと聴取チェック">
+        <article class="card result-card redflag-card">
+            <div class="section-header">
+                <h2>🚩 レッドフラッグ</h2>
+                <span class="section-tag">重要</span>
+            </div>
+            <ul id="redFlagList" class="red-flag-list"></ul>
+            <p id="noFlagsMessage" class="no-flags" hidden>レッドフラッグは検出されませんでした。</p>
+        </article>
+        <article class="card result-card checklist-card">
+            <div class="checklist-header">
+                <h2>✅ 聴取チェック</h2>
+                <div class="checklist-rate">
+                    <span>進捗</span>
+                    <strong id="checklistRate">0%</strong>
+                </div>
+            </div>
+            <div class="checklist-progress-bar" aria-hidden="true">
+                <div id="checklistProgress" class="checklist-progress-filled"></div>
+            </div>
+            <div class="checklist-status-row">
+                <span id="checklistCount" class="checklist-status">0 / 0 確認済み</span>
+                <span id="nextChecklistItem" class="checklist-next">次に確認してください: -</span>
+            </div>
+            <ul id="checklistItems" class="checklist-items"></ul>
+            <div class="checklist-missing">
+                <h3>未確認項目</h3>
+                <ul id="checklistMissing" class="checklist-missing-list"></ul>
             </div>
         </article>
     </section>
 
-    <section class="result-grid" aria-label="結果詳細">
-        <article class="card result-card">
-            <h2>レッドフラッグ</h2>
-            <ul id="redFlagList" class="red-flag-list"></ul>
-            <p id="noFlagsMessage" class="no-flags" hidden>レッドフラッグは検出されませんでした。</p>
+    <section class="note-section">
+        <article class="card result-card note-card" id="summaryPlaceholder">
+            <div class="note-header">
+                <h2>📝 申し送り</h2>
+                <div class="note-actions">
+                    <button type="button" id="copySummaryBtn" class="copy-btn">コピー</button>
+                    <button type="button" id="clearSummaryBtn" class="clear-btn">クリア</button>
+                </div>
+            </div>
+            <pre id="summaryText" class="summary-text">申し送り情報を生成中です。</pre>
+            <p id="copyMessage" class="copy-message" hidden>申し送りをコピーしました</p>
+            <p id="clearMessage" class="clear-message" hidden>申し送りをクリアしました</p>
         </article>
-        <article class="card result-card placeholder-summary" id="summaryPlaceholder">
-            <h2>申し送り</h2>
-            <p>申し送りは次の Sprint で実装予定です。</p>
-        </article>
-        <article class="card result-card">
-            <h2>回答一覧</h2>
-            <ul id="answerList" class="answer-list"></ul>
+    </section>
+
+    <section class="answer-section">
+        <article class="card result-card answer-card">
+            <div class="section-header">
+                <h2>📋 回答一覧</h2>
+                <span class="section-tag">未回答は非表示</span>
+            </div>
+            <ul id="answerList" class="qa-list"></ul>
             <p id="answerEmptyText" class="no-data" hidden>回答がありません。</p>
         </article>
     </section>
+
+    <section class="bottom-actions">
+        <button type="button" class="disabled-btn" disabled>印刷</button>
+        <button type="button" class="disabled-btn" disabled>PDF</button>
+    </section>
 </main>
+<footer class="page-footer">
+    <p>消防救急アシスタント Pro</p>
+    <p>Version 1.0</p>
+</footer>
 <script type="module" src="../js/router.js"></script>
 <script type="module" src="../js/pages/result.js"></script>
 </body>

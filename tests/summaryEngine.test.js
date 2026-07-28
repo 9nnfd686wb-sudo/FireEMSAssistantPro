@@ -10,65 +10,67 @@ function assertEqual(actual, expected, message) {
 function run() {
   const cases = [
     {
-      name: '正常系 入力あり',
+      name: 'LEVEL2 重症胸痛まとめ',
       input: {
-        dispatch: {
-          age: '68',
-          sex: '男性',
-          chiefComplaint: '胸痛',
-          patientName: '山田太郎'
+        protocolId: 'chestPain',
+        answers: {
+          radiation: '左肩',
+          chestPainSeverity: '10/10'
         },
-        answers: {},
         redFlags: [
           { id: 'sudden_onset', label: '突然発症' },
+          { id: 'cold_sweat', label: '冷汗' },
+          { id: 'breathing_difficulty', label: '呼吸困難' },
           { id: 'consciousness_impairment', label: '意識障害' }
         ],
-        urgency: { label: '最優先' }
+        urgency: { level: 'LEVEL2', label: '高' }
       },
       expected: {
-        handover: '68歳男性。 胸痛。 突然発症、意識障害を伴います。 最優先の緊急度です。',
-        patient: {
-          age: 68,
-          sex: '男性'
-        }
+        summary: '突然発症の胸痛です。\n冷汗があります。\n呼吸困難があります。\n意識障害があります。\n左肩へ放散しています。\n疼痛は10/10です。\n緊急度はLEVEL2（高）です。'
       }
     },
     {
-      name: '異常系 JSON未読込的な空入力',
+      name: 'LEVEL4 疼痛のみ',
       input: {
-        dispatch: null,
+        protocolId: 'chestPain',
+        answers: {
+          chestPainSeverity: '5/10'
+        },
+        redFlags: [],
+        urgency: { level: 'LEVEL4', label: '低' }
+      },
+      expected: {
+        summary: '疼痛は5/10です。\n緊急度はLEVEL4（低）です。'
+      }
+    },
+    {
+      name: 'LEVEL1 RedFlagなし',
+      input: {
+        protocolId: 'chestPain',
+        answers: {},
+        redFlags: [],
+        urgency: { level: 'LEVEL1', label: '最優先' }
+      },
+      expected: {
+        summary: '緊急度はLEVEL1（最優先）です。'
+      }
+    },
+    {
+      name: '未入力時は空文字',
+      input: {
+        protocolId: 'chestPain',
         answers: null,
         redFlags: null,
         urgency: null
       },
       expected: {
-        handover: '年齢不明。 胸痛。',
-        patient: {
-          age: null,
-          sex: '不明'
-        }
-      }
-    },
-    {
-      name: '異常系 不正な年齢',
-      input: {
-        dispatch: { age: 'abc', sex: '女性', chiefComplaint: '' },
-        answers: {},
-        redFlags: [],
-        urgency: { label: '低' }
-      },
-      expected: {
-        handover: '年齢不明。 女性。 胸痛。 低の緊急度です。',
-        patient: {
-          age: null,
-          sex: '女性'
-        }
+        summary: ''
       }
     }
   ];
 
   for (const testCase of cases) {
-    const actual = buildSummary(testCase.input.dispatch, testCase.input.answers, testCase.input.redFlags, testCase.input.urgency);
+    const actual = buildSummary(testCase.input.protocolId, testCase.input.answers, testCase.input.redFlags, testCase.input.urgency);
     assertEqual(actual, testCase.expected, testCase.name);
   }
 

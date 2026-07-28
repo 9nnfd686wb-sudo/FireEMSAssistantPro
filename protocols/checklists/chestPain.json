@@ -1,0 +1,18 @@
+{
+  "required": [
+    { "id": "location", "label": "場所" },
+    { "id": "age", "label": "年齢" },
+    { "id": "sex", "label": "性別" },
+    { "id": "consciousnessImpairment", "label": "意識" },
+    { "id": "breathingStatus", "label": "呼吸" },
+    { "id": "onsetTime", "label": "発症時刻" },
+    { "id": "chestPainOnset", "label": "突然発症" },
+    { "id": "chestPainLocation", "label": "胸痛部位" },
+    { "id": "radiation", "label": "放散痛" },
+    { "id": "coldSweat", "label": "冷汗" },
+    { "id": "breathingDifficulty", "label": "呼吸困難" },
+    { "id": "chestPainSeverity", "label": "疼痛" },
+    { "id": "medicalHistory", "label": "既往歴" },
+    { "id": "medications", "label": "内服" }
+  ]
+}
