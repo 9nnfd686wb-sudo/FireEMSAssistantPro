@@ -1,0 +1,53 @@
+/* dispatch page styles */
+.form-container {
+    max-width: 640px;
+    margin: 1.5rem auto;
+    padding: 1rem 1.25rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+form label {
+    display: block;
+    margin-top: 0.75rem;
+    font-weight: 600;
+}
+
+form input {
+    width: 100%;
+    padding: 0.6rem 0.75rem;
+    margin-top: 0.25rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.form-actions {
+    margin-top: 1rem;
+    text-align: right;
+}
+
+.next-btn {
+    background: #0078d4;
+    color: #fff;
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.next-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+input:invalid {
+    border-color: #e04b4b;
+}
+
+/* small responsive tweak */
+@media (max-width: 480px) {
+    .form-container { padding: 1rem; margin: 0.75rem; }
+}

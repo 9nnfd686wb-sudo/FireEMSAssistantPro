@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新規119受付</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dispatch.css">
+</head>
+<body>
+
+<header class="header">
+    <h1>🚑 新規119受付</h1>
+    <p>119番通報受付</p>
+</header>
+
+<main class="form-container">
+    <form id="dispatchForm" novalidate>
+        <label for="callerName">通報者氏名</label>
+        <input id="callerName" name="callerName" type="text" placeholder="入力してください" required>
+
+        <label for="phone">電話番号</label>
+        <input id="phone" name="phone" type="tel" placeholder="090-1234-5678" pattern="^0[0-9\- ]{8,}$" required>
+
+        <label for="patientName">傷病者</label>
+        <input id="patientName" name="patientName" type="text" placeholder="氏名または不明" required>
+
+        <label for="age">年齢</label>
+        <input id="age" name="age" type="number" min="0" max="130" required>
+
+        <label for="location">発生場所</label>
+        <input id="location" name="location" type="text" placeholder="住所" required>
+
+        <div class="form-actions">
+            <button id="nextBtn" type="submit" class="next-btn">次へ（症状選択）</button>
+        </div>
+    </form>
+</main>
+
+<script src="../js/app.js"></script>
+<script src="../js/dispatch.js"></script>
+
+</body>
+</html>
