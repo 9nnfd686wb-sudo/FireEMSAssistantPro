@@ -1,0 +1,53 @@
+/* components.css: ボタン・カード・アイコン等の再利用コンポーネント */
+
+/* カードUI（大きいボタン/アイコン付き） */
+.card{
+    background:var(--card-bg);
+    border-radius:16px;
+    padding:28px;
+    display:flex;
+    align-items:center;
+    gap:18px;
+    box-shadow:0 6px 16px rgba(2,10,20,0.4);
+    border:1px solid rgba(255,255,255,0.04);
+    cursor:pointer;
+    transition:transform .15s ease, box-shadow .15s ease;
+    /* ボタン高さは UI ガイドライン準拠（高さ 60px 以上を目安） */
+    min-height:64px;
+}
+
+.card .icon{
+    font-size:34px;
+    width:56px;
+    height:56px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(255,255,255,0.03);
+    border-radius:12px;
+}
+
+.card span{
+    font-size:20px;
+    font-weight:700;
+    /* テキストは折り返し可能にし、ラベルに余白を持たせる */
+    line-height:1.2;
+}
+
+.card:hover{ transform:translateY(-4px); box-shadow:0 14px 30px rgba(2,10,30,0.45); }
+
+/* 大きいアクションボタン */
+.primary-btn{
+    background:var(--fire-blue-500);
+    color:white;
+    padding:16px 20px;
+    border-radius:12px;
+    border:none;
+    font-size:18px;
+    font-weight:700;
+}
+
+.primary-btn:active{ transform:translateY(1px); }
+
+/* カード内テキストの折り返し制御 */
+.card .label { display:block; }

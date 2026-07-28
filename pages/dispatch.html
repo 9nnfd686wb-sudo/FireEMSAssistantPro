@@ -5,40 +5,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>新規119受付</title>
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
     <link rel="stylesheet" href="../css/dispatch.css">
 </head>
 <body>
 
 <header class="header">
-    <h1>🚑 新規119受付</h1>
-    <p>119番通報受付</p>
+    <div class="container">
+        <h1>🚑 新規119受付</h1>
+        <p>119番通報受付</p>
+        <p class="version">Version 1.0</p>
+    </div>
 </header>
 
-<main class="form-container">
+<main class="form-container container">
     <form id="dispatchForm" novalidate>
-        <label for="callerName">通報者氏名</label>
-        <input id="callerName" name="callerName" type="text" placeholder="入力してください" required>
+        <section class="card card-form-section" aria-labelledby="section-report-title">
+            <h2 id="section-report-title">通報情報</h2>
 
-        <label for="phone">電話番号</label>
-        <input id="phone" name="phone" type="tel" placeholder="090-1234-5678" pattern="^0[0-9\- ]{8,}$" required>
+            <label for="callerName">通報者氏名</label>
+            <input id="callerName" name="callerName" type="text" placeholder="入力してください" autocomplete="name">
+            <span id="callerNameError" class="error-message" aria-live="polite"></span>
 
-        <label for="patientName">傷病者</label>
-        <input id="patientName" name="patientName" type="text" placeholder="氏名または不明" required>
+            <label for="patientName">患者氏名</label>
+            <input id="patientName" name="patientName" type="text" placeholder="氏名または不明" autocomplete="name">
+            <span id="patientNameError" class="error-message" aria-live="polite"></span>
 
-        <label for="age">年齢</label>
-        <input id="age" name="age" type="number" min="0" max="130" required>
+            <label for="phone">電話番号</label>
+            <input id="phone" name="phone" type="tel" placeholder="090-1234-5678" inputmode="tel" pattern="^[0-9\-]+$" autocomplete="tel">
+            <span id="phoneError" class="error-message" aria-live="polite"></span>
 
-        <label for="location">発生場所</label>
-        <input id="location" name="location" type="text" placeholder="住所" required>
+            <label for="address">住所</label>
+            <input id="address" name="address" type="text" placeholder="発生場所を入力してください" required autocomplete="street-address">
+            <span id="addressError" class="error-message" aria-live="polite"></span>
+
+            <label for="callTime">通報時間</label>
+            <input id="callTime" name="callTime" type="datetime-local">
+            <span id="callTimeError" class="error-message" aria-live="polite"></span>
+        </section>
+
+        <section class="card card-form-section" aria-labelledby="section-patient-title">
+            <h2 id="section-patient-title">患者情報</h2>
+
+            <label for="age">年齢</label>
+            <input id="age" name="age" type="number" min="0" max="120" step="1" placeholder="0～120" inputmode="numeric">
+            <span id="ageError" class="error-message" aria-live="polite"></span>
+
+            <label for="sex">性別</label>
+            <select id="sex" name="sex">
+                <option value="不明">不明</option>
+                <option value="男">男</option>
+                <option value="女">女</option>
+            </select>
+            <span id="sexError" class="error-message" aria-live="polite"></span>
+        </section>
+
+        <section class="card card-form-section" aria-labelledby="section-other-title">
+            <h2 id="section-other-title">その他</h2>
+
+            <label for="chiefComplaint">主訴</label>
+            <input id="chiefComplaint" name="chiefComplaint" type="text" placeholder="症状を入力してください">
+            <span id="chiefComplaintError" class="error-message" aria-live="polite"></span>
+
+            <label for="memo">自由メモ</label>
+            <textarea id="memo" name="memo" rows="4" placeholder="必要に応じてメモを入力"></textarea>
+            <span id="memoError" class="error-message" aria-live="polite"></span>
+        </section>
 
         <div class="form-actions">
-            <button id="nextBtn" type="submit" class="next-btn">次へ（症状選択）</button>
+            <button type="button" id="backBtn" class="secondary-btn">戻る</button>
+            <button type="submit" id="nextBtn" class="primary-btn">次へ</button>
         </div>
     </form>
 </main>
 
-<script src="../js/app.js"></script>
-<script src="../js/dispatch.js"></script>
+<script type="module" src="../js/router.js"></script>
+<script type="module" src="../js/dispatch.js"></script>
 
 </body>
 </html>
