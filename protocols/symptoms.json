@@ -1,0 +1,72 @@
+[
+  {
+    "id": "chestPain",
+    "label": "胸痛",
+    "icon": "❤️",
+    "description": "胸部症状を聴取",
+    "protocolId": "chestPain"
+  },
+  {
+    "id": "dyspnea",
+    "label": "呼吸困難",
+    "icon": "🫁",
+    "description": "呼吸状態を評価",
+    "protocolId": "common"
+  },
+  {
+    "id": "consciousness",
+    "label": "意識障害",
+    "icon": "🧠",
+    "description": "意識レベルを確認",
+    "protocolId": "common"
+  },
+  {
+    "id": "stroke",
+    "label": "脳卒中疑い",
+    "icon": "🧠",
+    "description": "脳卒中兆候を評価",
+    "protocolId": "common"
+  },
+  {
+    "id": "abdominal",
+    "label": "腹痛",
+    "icon": "🩺",
+    "description": "腹部症状を確認",
+    "protocolId": "common"
+  },
+  {
+    "id": "trauma",
+    "label": "外傷",
+    "icon": "🤕",
+    "description": "外傷リスクを評価",
+    "protocolId": "common"
+  },
+  {
+    "id": "burn",
+    "label": "熱傷",
+    "icon": "🔥",
+    "description": "熱傷徴候を確認",
+    "protocolId": "common"
+  },
+  {
+    "id": "anaphylaxis",
+    "label": "アナフィラキシー",
+    "icon": "⚡",
+    "description": "アナフィラキシー兆候を確認",
+    "protocolId": "common"
+  },
+  {
+    "id": "seizure",
+    "label": "けいれん",
+    "icon": "⚡",
+    "description": "けいれん状態を評価",
+    "protocolId": "common"
+  },
+  {
+    "id": "cpa",
+    "label": "CPA",
+    "icon": "🚨",
+    "description": "心肺停止対応を確認",
+    "protocolId": "common"
+  }
+]

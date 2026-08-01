@@ -12,34 +12,35 @@
 <body>
 <header class="header">
     <div class="container">
-        <h1>プロトコル</h1>
-        <p>質問に回答してください</p>
+
+        <h1 id="protocolTitle">
+            プロトコル
+        </h1>
+
+        <p id="protocolProgress">
+            質問 0 / 0
+        </p>
+
     </div>
 </header>
 <main class="container protocol-container">
-    <section class="card protocol-card">
-        <h2>プロトコルを選択</h2>
-        <div class="question-block">
-            <label for="protocolSelect">プロトコル</label>
-            <select id="protocolSelect" name="protocolSelect">
-                <option value="common">共通質問</option>
-                <option value="chestPain">胸痛プロトコル</option>
-            </select>
-        </div>
-        <div class="protocol-actions">
-            <button id="loadProtocolBtn" type="button" class="primary-btn">質問を開始</button>
-        </div>
-    </section>
 
-    <section class="card protocol-card" id="questionsSection" hidden>
+    <section class="card protocol-card">
         <div class="protocol-header">
-            <span id="progressText" class="protocol-progress">質問 0 / 0</span>
-            <h2 id="questionText" class="protocol-question-title">質問文がここに入ります</h2>
-        </div>
-        <div id="questionContainer"></div>
+
+<h2 id="questionText"
+    class="protocol-question-title">
+</h2>
+
+<p id="progressText"
+   class="protocol-progress">
+</p>
+
+</div>
+        <div id="questionContainer" class="question-block"></div>
         <div id="validationMessage" class="error-message" aria-live="polite"></div>
         <div class="protocol-actions">
-            <button id="prevBtn" type="button" class="secondary-btn">前へ</button>
+            <button id="prevBtn" type="button" class="secondary-btn">戻る</button>
             <button id="nextBtn" type="button" class="primary-btn">次へ</button>
         </div>
     </section>

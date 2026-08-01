@@ -1,9 +1,6 @@
 import { loadProtocolJson } from '../storage.js';
 import { initAnswers, getAnswer, setAnswer, saveAnswers } from '../core/store.js';
 
-const protocolSelect = document.getElementById('protocolSelect');
-const loadProtocolBtn = document.getElementById('loadProtocolBtn');
-const questionsSection = document.getElementById('questionsSection');
 const questionText = document.getElementById('questionText');
 const questionContainer = document.getElementById('questionContainer');
 const progressText = document.getElementById('progressText');
@@ -52,46 +49,90 @@ function renderText(question) {
 }
 
 function renderNumber(question) {
-    const input = document.createElement('input');
-    input.type = 'number';
-    input.id = question.id;
-    input.name = question.id;
-    input.value = getAnswer(question.id) ?? '';
-    if (typeof question.min === 'number') {
-        input.min = question.min;
+
+    const group = document.createElement("div");
+    group.className = "number-grid";
+
+    for (let i = question.min; i <= question.max; i++) {
+
+        const button = document.createElement("button");
+
+        button.type = "button";
+        button.className = "number-card";
+
+        button.textContent = i;
+
+        if (Number(getAnswer(question.id)) === i) {
+            button.classList.add("selected");
+        }
+
+        button.addEventListener("click", () => {
+
+            setAnswer(question.id, i);
+
+            saveAnswers();
+
+            group.querySelectorAll(".number-card").forEach(card => {
+                card.classList.remove("selected");
+            });
+
+            button.classList.add("selected");
+
+            setTimeout(() => {
+                handleNavigation(1);
+            }, 250);
+
+        });
+
+        group.appendChild(button);
     }
-    if (typeof question.max === 'number') {
-        input.max = question.max;
-    }
-    input.placeholder = question.placeholder || '数値を入力してください';
-    input.addEventListener('input', () => {
-        setAnswer(question.id, input.value);
-    });
-    return input;
+
+    return group;
 }
 
 function renderSelect(question) {
-    const select = document.createElement('select');
-    select.id = question.id;
-    select.name = question.id;
 
-    const emptyOption = document.createElement('option');
-    emptyOption.value = '';
-    emptyOption.textContent = '選択してください';
-    select.appendChild(emptyOption);
+    const group = document.createElement("div");
+    group.className = "option-group";
 
     buildOptions(question.options).forEach(option => {
-        const optionElement = document.createElement('option');
-        optionElement.value = option.value;
-        optionElement.textContent = option.label;
-        optionElement.selected = getAnswer(question.id) === option.value;
-        select.appendChild(optionElement);
+
+        const button = document.createElement("button");
+
+        button.type = "button";
+
+        button.className = "answer-card";
+
+        button.textContent = option.label;
+
+        if (getAnswer(question.id) === option.value) {
+            button.classList.add("selected");
+        }
+
+        button.addEventListener("click", () => {
+
+            setAnswer(question.id, option.value);
+
+            saveAnswers();
+
+            group.querySelectorAll(".answer-card").forEach(card=>{
+                card.classList.remove("selected");
+            });
+
+            button.classList.add("selected");
+
+            setTimeout(() => {
+                handleNavigation(1);
+            },250);
+
+        });
+
+        group.appendChild(button);
+
     });
 
-    select.addEventListener('change', () => {
-        setAnswer(question.id, select.value);
-    });
-    return select;
+    return group;
+
 }
 
 function renderYesNo(question) {
@@ -101,16 +142,26 @@ function renderYesNo(question) {
 
     ['はい', 'いいえ'].forEach(labelText => {
         const label = document.createElement('label');
+        label.className = "answer-card";
         const input = document.createElement('input');
         input.type = 'radio';
         input.name = question.id;
         input.value = labelText;
         const booleanValue = labelText === 'はい';
         input.checked = stored === booleanValue;
-        input.addEventListener('change', () => {
-            setAnswer(question.id, booleanValue);
+        input.addEventListener("change", () => {
+
+    setAnswer(question.id, booleanValue);
+
+    saveAnswers();
+
+    setTimeout(() => {
+        handleNavigation(1);
+    }, 250);
+
         });
 
+        input.style.display = "none";
         label.appendChild(input);
         label.appendChild(document.createTextNode(labelText));
         optionGroup.appendChild(label);
@@ -144,6 +195,7 @@ function renderQuestion() {
 
     questionText.textContent = question.label || '質問';
     progressText.textContent = `質問 ${currentQuestionIndex + 1} / ${currentProtocol.questions.length}`;
+    document.getElementById("protocolProgress").textContent =`質問 ${currentQuestionIndex + 1} / ${currentProtocol.questions.length}`;
     validationMessage.textContent = '';
 
     questionContainer.innerHTML = '';
@@ -231,17 +283,35 @@ function goToQuestion(index) {
 }
 
 async function loadProtocol() {
-    const selectedProtocol = protocolSelect.value;
+
+    const selectedProtocol = sessionStorage.getItem("protocol");
+
+    if (!selectedProtocol) {
+        alert("症状を選択してください");
+        window.location.href = "symptoms.html";
+        return;
+    }
+
     const protocol = await loadProtocolJson(selectedProtocol);
+
     if (!protocol) {
+        alert("プロトコルが見つかりません");
         return;
     }
 
     currentProtocol = protocol;
+    document.getElementById("protocolTitle").textContent =
+    currentProtocol.protocolName;
     currentQuestionIndex = 0;
+
     initAnswers(currentProtocol.protocolId || currentProtocol.id);
 
-    questionsSection.hidden = false;
+    // タイトル表示
+    const title = document.getElementById("selectedSymptomName");
+    if (title) {
+        title.textContent = currentProtocol.protocolName;
+    }
+
     renderQuestion();
 }
 
@@ -273,6 +343,6 @@ function handleNavigation(direction) {
     goToQuestion(nextIndex);
 }
 
-loadProtocolBtn.addEventListener('click', loadProtocol);
+loadProtocol();
 prevBtn.addEventListener('click', () => handleNavigation(-1));
 nextBtn.addEventListener('click', () => handleNavigation(1));
