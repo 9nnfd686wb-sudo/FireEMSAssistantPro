@@ -68,22 +68,21 @@ function renderNumber(question) {
 
         button.addEventListener("click", () => {
 
-            setAnswer(question.id, i);
+    setAnswer(question.id, i);
 
-            saveAnswers();
+    saveAnswers();
 
-            group.querySelectorAll(".number-card").forEach(card => {
-                card.classList.remove("selected");
-            });
+    group.querySelectorAll(".answer-card").forEach(card=>{
+        card.classList.remove("selected");
+    });
 
-            button.classList.add("selected");
+    button.classList.add("selected");
 
-            setTimeout(() => {
-                handleNavigation(1);
-            }, 250);
+    setTimeout(() => {
+        handleNavigation(1);
+    },250);
 
-        });
-
+});
         group.appendChild(button);
     }
 
@@ -111,6 +110,50 @@ function renderSelect(question) {
 
         button.addEventListener("click", () => {
 
+    setAnswer(question.id, option.value);
+
+    saveAnswers();
+
+    button.classList.add("selected");
+
+    handleNavigation(1);
+
+        });
+
+        group.appendChild(button);
+
+    });
+
+    return group;
+
+}
+
+function renderYesNo(question) {
+
+    const group = document.createElement("div");
+    group.className = "option-group";
+
+    const stored = normalizeYesNoAnswer(getAnswer(question.id));
+
+    [
+        { text: "はい", value: true },
+        { text: "いいえ", value: false }
+
+    ].forEach(option => {
+
+        const button = document.createElement("button");
+
+        button.type = "button";
+        button.className = "answer-card";
+
+        button.textContent = option.text;
+
+        if (stored === option.value) {
+            button.classList.add("selected");
+        }
+
+        button.addEventListener("click", () => {
+
             setAnswer(question.id, option.value);
 
             saveAnswers();
@@ -133,41 +176,6 @@ function renderSelect(question) {
 
     return group;
 
-}
-
-function renderYesNo(question) {
-    const optionGroup = document.createElement('div');
-    optionGroup.className = 'option-group';
-    const stored = normalizeYesNoAnswer(getAnswer(question.id));
-
-    ['はい', 'いいえ'].forEach(labelText => {
-        const label = document.createElement('label');
-        label.className = "answer-card";
-        const input = document.createElement('input');
-        input.type = 'radio';
-        input.name = question.id;
-        input.value = labelText;
-        const booleanValue = labelText === 'はい';
-        input.checked = stored === booleanValue;
-        input.addEventListener("change", () => {
-
-    setAnswer(question.id, booleanValue);
-
-    saveAnswers();
-
-    setTimeout(() => {
-        handleNavigation(1);
-    }, 250);
-
-        });
-
-        input.style.display = "none";
-        label.appendChild(input);
-        label.appendChild(document.createTextNode(labelText));
-        optionGroup.appendChild(label);
-    });
-
-    return optionGroup;
 }
 
 function renderUnsupported() {
@@ -200,12 +208,8 @@ function renderQuestion() {
 
     questionContainer.innerHTML = '';
 
-    const label = document.createElement('label');
-    label.textContent = question.label;
-    questionContainer.appendChild(label);
-
-    const renderer = renderers[question.type] || renderUnsupported;
-    questionContainer.appendChild(renderer(question));
+const renderer = renderers[question.type] || renderUnsupported;
+questionContainer.appendChild(renderer(question));
 }
 
 function readCurrentAnswer(question) {
@@ -321,11 +325,12 @@ function handleNavigation(direction) {
     }
 
     const currentQuestion = currentProtocol.questions[currentQuestionIndex];
-    updateCurrentAnswer(currentQuestion);
 
-    if (!validateCurrentAnswer()) {
-        return;
-    }
+// updateCurrentAnswer(currentQuestion);
+
+if (direction > 0 && !validateCurrentAnswer()) {
+    return;
+}
 
     saveAnswers();
 
@@ -344,5 +349,13 @@ function handleNavigation(direction) {
 }
 
 loadProtocol();
-prevBtn.addEventListener('click', () => handleNavigation(-1));
-nextBtn.addEventListener('click', () => handleNavigation(1));
+
+if (prevBtn) {
+
+    prevBtn.addEventListener("click", () => {
+
+        handleNavigation(-1);
+
+    });
+
+}

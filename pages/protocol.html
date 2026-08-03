@@ -11,18 +11,35 @@
 </head>
 <body>
 <header class="header">
+
     <div class="container">
 
-        <h1 id="protocolTitle">
-            プロトコル
-        </h1>
+        <div class="header-top">
+
+            <button id="prevBtn" class="back-btn">
+
+                ← 戻る
+
+            </button>
+
+            <h1 id="protocolTitle">
+
+                プロトコル
+
+            </h1>
+
+        </div>
 
         <p id="protocolProgress">
-            質問 0 / 0
+
+            質問 1 / 10
+
         </p>
 
     </div>
+
 </header>
+
 <main class="container protocol-container">
 
     <section class="card protocol-card">
@@ -39,10 +56,9 @@
 </div>
         <div id="questionContainer" class="question-block"></div>
         <div id="validationMessage" class="error-message" aria-live="polite"></div>
-        <div class="protocol-actions">
-            <button id="prevBtn" type="button" class="secondary-btn">戻る</button>
-            <button id="nextBtn" type="button" class="primary-btn">次へ</button>
-        </div>
+
+</div>
+
     </section>
 </main>
 <script type="module" src="../js/router.js"></script>

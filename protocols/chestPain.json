@@ -98,16 +98,37 @@
       "required": true
     },
     {
-      "id": "medicalHistory",
-      "type": "text",
-      "label": "既往歴があれば入力してください",
-      "required": false
-    },
+  "id": "medicalHistory",
+  "type": "select",
+  "label": "既往歴を選択してください",
+  "required": false,
+  "options": [
+    "なし",
+    "不明",
+    "心疾患",
+    "高血圧",
+    "糖尿病",
+    "脳卒中",
+    "心房細動",
+    "腎不全",
+    "COPD",
+    "喘息"
+  ]
+},
     {
-      "id": "medications",
-      "type": "text",
-      "label": "内服薬があれば入力してください",
-      "required": false
-    }
+  "id":"medications",
+  "type":"select",
+  "label":"内服薬を選択してください",
+  "required":false,
+  "options":[
+      "なし",
+      "不明",
+      "抗凝固薬",
+      "抗血小板薬",
+      "ニトロ",
+      "インスリン",
+      "降圧薬"
+  ]
+}
   ]
 }

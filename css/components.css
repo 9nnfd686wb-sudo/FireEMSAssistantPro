@@ -34,7 +34,10 @@
     line-height:1.2;
 }
 
-.card:hover{ transform:translateY(-4px); box-shadow:0 14px 30px rgba(2,10,30,0.45); }
+.menu .card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 14px 30px rgba(2,10,30,0.45);
+}
 
 /* 大きいアクションボタン */
 .primary-btn{
