@@ -15,29 +15,12 @@
         <h1>判定結果</h1>
         <p>消防指令員が最初に見る判断画面です。</p>
     </div>
-</header>
-<main class="container">
-    <section class="page-header">
-        <div class="page-title">
-            <h1>判定結果</h1>
-            <p>消防指令員が最初に確認する画面です。</p>
-        </div>
-    </section>
 
-    <section class="dispatch-header">
-        <div class="dispatch-item">
-            <strong>症状</strong>
+           <div class="dispatch-item">
+            <strong>プロトコル</strong>
             <span id="dispatchSymptom">胸痛</span>
         </div>
-        <div class="dispatch-item">
-            <strong>判定時刻</strong>
-            <span id="dispatchTime">--:--</span>
-        </div>
-        <div class="dispatch-item">
-            <strong>プロトコルVer</strong>
-            <span id="dispatchVersion">1.0</span>
-        </div>
-    </section>
+</header>
 
     <section class="summary-grid">
         <article class="card summary-card urgency-card" id="urgencySection" hidden aria-live="polite">
@@ -52,45 +35,10 @@
             <h3>判定理由</h3>
             <ul id="urgencyReasons" class="urgency-reasons"></ul>
         </article>
-        <article class="card summary-card protocol-card">
-            <h2>プロトコル</h2>
-            <p id="protocolName">読み込み中...</p>
-        </article>
+       
     </section>
 
-    <section class="detail-grid" aria-label="レッドフラッグと聴取チェック">
-        <article class="card result-card redflag-card">
-            <div class="section-header">
-                <h2>🚩 レッドフラッグ</h2>
-                <span class="section-tag">重要</span>
-            </div>
-            <ul id="redFlagList" class="red-flag-list"></ul>
-            <p id="noFlagsMessage" class="no-flags" hidden>レッドフラッグは検出されませんでした。</p>
-        </article>
-        <article class="card result-card checklist-card">
-            <div class="checklist-header">
-                <h2>✅ 聴取チェック</h2>
-                <div class="checklist-rate">
-                    <span>進捗</span>
-                    <strong id="checklistRate">0%</strong>
-                </div>
-            </div>
-            <div class="checklist-progress-bar" aria-hidden="true">
-                <div id="checklistProgress" class="checklist-progress-filled"></div>
-            </div>
-            <div class="checklist-status-row">
-                <span id="checklistCount" class="checklist-status">0 / 0 確認済み</span>
-                <span id="nextChecklistItem" class="checklist-next">次に確認してください: -</span>
-            </div>
-            <ul id="checklistItems" class="checklist-items"></ul>
-            <div class="checklist-missing">
-                <h3>未確認項目</h3>
-                <ul id="checklistMissing" class="checklist-missing-list"></ul>
-            </div>
-        </article>
-    </section>
-
-    <section class="note-section">
+     <section class="note-section">
         <article class="card result-card note-card" id="summaryPlaceholder">
             <div class="note-header">
                 <h2>📝 申し送り</h2>
@@ -105,6 +53,21 @@
         </article>
     </section>
 
+    <section class="detail-grid" aria-label="レッドフラッグ">
+        <article class="card result-card redflag-card">
+            <div class="section-header">
+                <h2>🚩 レッドフラッグ</h2>
+                <span class="section-tag">重要</span>
+            </div>
+            <ul id="redFlagList" class="red-flag-list"></ul>
+            <p id="noFlagsMessage" class="no-flags" hidden>レッドフラッグは検出されませんでした。</p>
+        </article>
+        <article class="card summary-card protocol-card">
+    
+            <p id="protocolName">読み込み中...</p>
+        </article> 
+    </section>
+
     <section class="answer-section">
         <article class="card result-card answer-card">
             <div class="section-header">
@@ -117,7 +80,7 @@
     </section>
 
     <section class="bottom-actions">
-        <button type="button" class="disabled-btn" disabled>印刷</button>
+        <button id="saveBtn" class="secondary-btn">💾 保存</button>
         <button type="button" class="disabled-btn" disabled>PDF</button>
     </section>
 </main>

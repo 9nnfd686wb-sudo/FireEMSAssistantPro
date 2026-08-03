@@ -318,7 +318,4 @@ function updateDispatchTime() {
     const minutes = String(now.getMinutes()).padStart(2, '0');
     dispatchTimeElement.textContent = `${hours}:${minutes}`;
 }
-
-if (protocolNameElement && answerList && answerEmptyText && redFlagList && noFlagsMessage && summaryText && copySummaryBtn && copyMessage && dispatchTimeElement && recommendedAction) {
     document.addEventListener('DOMContentLoaded', initialize);
-}
