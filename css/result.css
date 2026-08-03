@@ -772,3 +772,34 @@
         min-height: 360px;
     }
 }
+
+/* iPad以上 */
+@media (min-width: 768px) {
+    body {
+        font-size: 90%;
+    }
+
+    .container {
+        max-width: 1200px;
+        padding: 8px 16px;
+    }
+
+    .summary-grid,
+    .detail-grid {
+        gap: 12px;
+    }
+
+    .card {
+        padding: 12px;
+    }
+
+    .answer-card {
+        max-height: 220px;
+        overflow-y: auto;
+    }
+
+    .summary-text {
+        max-height: 180px;
+        overflow-y: auto;
+    }
+}
