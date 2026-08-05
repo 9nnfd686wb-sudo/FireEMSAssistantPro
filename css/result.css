@@ -639,76 +639,27 @@ section{
 
 }
 
-.urgency-card.level1{
+    .urgency-card.level1{
+        background:#d32f2f !important;
+        border-color:#b71c1c !important;
+        color:#fff !important;
+    }
 
-    background:#d32f2f;
+    .urgency-card.level2{
+        background:#fbc02d !important;
+        border-color:#f9a825 !important;
+        color:#000 !important;
+    }
 
-    border-color:#b71c1c;
+    .urgency-card.level3{
+        background:#388e3c !important;
+        border-color:#1b5e20 !important;
+        color:#fff !important;
+    }
 
-}
+    .urgency-card.level4{
+        background:#ffffff !important;
+        border-color:#d0d0d0 !important;
+        color:#000 !important;
+    }
 
-.urgency-card.level2{
-
-    background:#fbc02d;
-
-    border-color:#f9a825;
-
-    color:#000;
-
-}
-
-.urgency-card.level3{
-
-    background:#388e3c;
-
-    border-color:#1b5e20;
-
-}
-
-.urgency-card.level4{
-
-    background:#ffffff;
-
-    border-color:#cccccc;
-
-    color:#000;
-
-}
-
-.urgency-title{
-
-    margin:0;
-
-    font-size:1.8rem;
-
-    font-weight:700;
-
-    writing-mode:horizontal-tb;
-
-    white-space:nowrap;
-
-}
-
-.urgency-card.level1{
-    background:#d32f2f !important;
-    color:#fff !important;
-    border-color:#b71c1c !important;
-}
-
-.urgency-card.level2{
-    background:#fbc02d !important;
-    color:#000 !important;
-    border-color:#f9a825 !important;
-}
-
-.urgency-card.level3{
-    background:#388e3c !important;
-    color:#fff !important;
-    border-color:#1b5e20 !important;
-}
-
-.urgency-card.level4{
-    background:#ffffff !important;
-    color:#000 !important;
-    border-color:#cfcfcf !important;
-}
