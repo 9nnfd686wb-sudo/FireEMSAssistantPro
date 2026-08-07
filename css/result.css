@@ -311,29 +311,25 @@ h2{
 
 .copy-btn{
 
-    background:#1976d2;
+    width:130px;
 
-    color:white;
+    height:56px;
+
+    font-size:20px;
 
 }
 
 .answer-btn{
 
-    width:140px;
+    width:150px;
 
-    height:46px;
+    height:56px;
 
-    border:none;
-
-    border-radius:12px;
-
-    background:#455a64;
-
-    color:#fff;
+    font-size:18px;
 
     font-weight:700;
 
-    cursor:pointer;
+    border-radius:16px;
 
 }
 
@@ -637,17 +633,25 @@ section{
 
 .note-card{
 
-    min-height:180px;
+    min-height:460px;
+
+}
+
+.summary-wrapper{
+
+    height:340px;
+
+    padding:24px;
 
 }
 
 .summary-text{
 
-    min-height:110px;
+    font-size:1.45rem;
 
-    max-height:110px;
+    line-height:2;
 
-    font-size:1rem;
+    font-weight:600;
 
 }
 
