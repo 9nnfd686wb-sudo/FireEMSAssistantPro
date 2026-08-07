@@ -1,7 +1,6 @@
 import { detectRedFlags } from '../engines/redFlagEngine.js';
 import { evaluateUrgency } from '../engines/urgencyEngine.js';
 import { buildSummary } from '../engines/summaryEngine.js';
-import { buildChecklist } from '../engines/checklistEngine.js';
 import { loadProtocolAnswers, loadProtocolJson } from '../storage.js';
 
 const protocolNameElement = document.getElementById('protocolName');
@@ -10,79 +9,15 @@ const urgencyLevel = document.getElementById('urgencyLevel');
 const urgencyLabel = document.getElementById('urgencyLabel');
 const urgencyStars = document.getElementById('urgencyStars');
 const urgencyReasons = document.getElementById('urgencyReasons');
-const answerList = document.getElementById('answerList');
-const answerEmptyText = document.getElementById('answerEmptyText');
 const redFlagList = document.getElementById('redFlagList');
 const noFlagsMessage = document.getElementById('noFlagsMessage');
 const summaryText = document.getElementById('summaryText');
 const copySummaryBtn = document.getElementById('copySummaryBtn');
-const clearSummaryBtn = document.getElementById('clearSummaryBtn');
 const copyMessage = document.getElementById('copyMessage');
-const clearMessage = document.getElementById('clearMessage');
-const checklistList = document.getElementById('checklistItems');
-const checklistMissing = document.getElementById('checklistMissing');
-const checklistCount = document.getElementById('checklistCount');
-const nextChecklistItem = document.getElementById('nextChecklistItem');
-const checklistRate = document.getElementById('checklistRate');
-const checklistProgress = document.getElementById('checklistProgress');
 const dispatchTimeElement = document.getElementById('dispatchTime');
 const recommendedAction = document.getElementById('recommendedAction');
 
 let copyMessageTimeout = null;
-
-function formatAnswer(question, answer) {
-    if (question.type === 'yesno') {
-        return answer === true ? 'はい' : 'いいえ';
-    }
-    if (question.type === 'number') {
-        return answer !== undefined && answer !== null ? String(answer) : '未回答';
-    }
-    if (question.type === 'select') {
-        return String(answer || '未回答');
-    }
-    if (question.type === 'text') {
-        return String(answer || '未回答');
-    }
-    return String(answer || '未回答');
-}
-
-function renderAnswerItems(protocol, answers) {
-    answerList.innerHTML = '';
-
-    if (!protocol || !Array.isArray(protocol.questions) || !answers) {
-        answerEmptyText.hidden = false;
-        return;
-    }
-
-    const items = protocol.questions
-        .map(question => {
-            const answer = answers[question.id];
-            const hasAnswer = answer !== undefined && answer !== null && answer !== '';
-            if (!hasAnswer) {
-                return null;
-            }
-            return {
-                label: question.label || question.id,
-                value: formatAnswer(question, answer)
-            };
-        })
-        .filter(Boolean);
-
-    if (items.length === 0) {
-        answerEmptyText.hidden = false;
-        return;
-    }
-
-    answerEmptyText.hidden = true;
-    answerList.innerHTML = items
-        .map(item => `
-            <li class="qa-item">
-                <span class="question-text">${item.label}</span>
-                <span class="answer-text">${item.value}</span>
-            </li>
-        `)
-        .join('');
-}
 
 function renderRedFlags(flags) {
     if (!flags || !flags.length) {
@@ -111,47 +46,6 @@ function renderRedFlags(flags) {
             `;
         })
         .join('');
-}
-
-function renderChecklist(checklist) {
-    if (!checklist) {
-        return;
-    }
-
-    if (checklistRate) {
-        checklistRate.textContent = `${checklist.completionRate}%`;
-    }
-
-    if (checklistProgress) {
-        checklistProgress.style.width = `${Math.max(0, Math.min(100, checklist.completionRate))}%`;
-    }
-
-    const total = checklist.completed.length + checklist.missing.length;
-    if (checklistCount) {
-        checklistCount.textContent = `${checklist.completed.length} / ${total} 確認済み`;
-    }
-
-    if (nextChecklistItem) {
-        const nextLabel = checklist.missing.length > 0 ? checklist.missing[0] : 'すべて確認済みです';
-        nextChecklistItem.textContent = `次に確認してください: ${nextLabel}`;
-    }
-
-    if (checklistList) {
-        checklistList.innerHTML = checklist.completed
-            .map(label => `
-                <li class="checklist-item completed">
-                    <span class="check-icon" aria-hidden="true">✔</span>
-                    <span>${label}</span>
-                </li>
-            `)
-            .join('');
-    }
-
-    if (checklistMissing) {
-        checklistMissing.innerHTML = checklist.missing
-            .map(label => `<li class="checklist-item missing">${label}</li>`)
-            .join('');
-    }
 }
 
 function renderUrgency(urgency) {
@@ -264,8 +158,6 @@ async function renderResult() {
         symptomText.textContent = protocolName;
     }
 
-    renderAnswerItems(protocol, saved?.answers || {});
-
     const flags = await detectRedFlags(protocolKey);
     renderRedFlags(flags);
 
@@ -275,26 +167,8 @@ async function renderResult() {
     const summary = buildSummary(protocolKey, saved?.answers || {}, flags, urgency);
     renderSummary(summary);
 
-    const checklist = await buildChecklist(protocolKey, saved?.answers || {});
-    renderChecklist(checklist);
 }
 
-function clearSummary() {
-    if (!summaryText) {
-        return;
-    }
-
-    summaryText.textContent = '申し送り情報がクリアされました。';
-    if (copyMessage) {
-        copyMessage.hidden = true;
-    }
-    if (clearMessage) {
-        clearMessage.hidden = false;
-        window.setTimeout(() => {
-            clearMessage.hidden = true;
-        }, 3000);
-    }
-}
 
 function initialize() {
     renderResult();
@@ -303,10 +177,18 @@ function initialize() {
     if (copySummaryBtn) {
         copySummaryBtn.addEventListener('click', copySummary);
     }
-    if (clearSummaryBtn) {
-        clearSummaryBtn.addEventListener('click', clearSummary);
-    }
-}
+
+    const answerPageBtn = document.getElementById('answerPageBtn');
+
+    if (answerPageBtn) {
+
+        answerPageBtn.addEventListener('click', () => {
+
+            location.href = "answers.html";
+
+        });
+   }
+ }
 
 function updateDispatchTime() {
     if (!dispatchTimeElement) {

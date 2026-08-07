@@ -47,8 +47,6 @@
 
 </div>
 
-    </div>
-
     <div class="urgency-right">
 
         <div class="urgency-header">
@@ -79,8 +77,18 @@
             <div class="note-header">
                 <h2>📝 申し送り</h2>
                 <div class="note-actions">
-                    <button type="button" id="copySummaryBtn" class="copy-btn">コピー</button>
-                </div>
+
+    <button id="copySummaryBtn"
+            class="copy-btn">
+        コピー
+    </button>
+
+    <button id="answerPageBtn"
+            class="answer-btn">
+        📋 回答一覧
+    </button>
+
+</div>
             </div>
             <div class="summary-wrapper">
 
@@ -134,17 +142,6 @@
     </article>
 
 </section>
-
-    <section class="answer-section">
-        <article class="card result-card answer-card">
-            <div class="section-header">
-                <h2>📋 回答一覧</h2>
-                <span class="section-tag">未回答は非表示</span>
-            </div>
-            <ul id="answerList" class="qa-list"></ul>
-            <p id="answerEmptyText" class="no-data" hidden>回答がありません。</p>
-        </article>
-    </section>
 
     <section class="bottom-actions">
         <button id="saveBtn" class="secondary-btn">💾 保存</button>

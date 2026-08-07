@@ -267,7 +267,7 @@ h2{
 
 .note-card{
 
-    min-height:320px;
+    min-height:480px;
 
 }
 
@@ -279,7 +279,7 @@ h2{
 
     align-items:center;
 
-    margin-bottom:18px;
+    margin-bottom:12px;
 
 }
 
@@ -317,23 +317,63 @@ h2{
 
 }
 
+.answer-btn{
+
+    width:140px;
+
+    height:46px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#455a64;
+
+    color:#fff;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+}
+
+.answer-btn:hover{
+
+    background:#546e7a;
+
+}
+
 .summary-text{
 
     width:100%;
 
-    min-height:220px;
+    min-height:360px;
 
-    border-radius:16px;
+    max-height:360px;
 
-    padding:18px;
+    padding:28px;
 
-    background:rgba(255,255,255,.06);
+    font-size:1.45rem;
 
-    color:white;
+    font-weight:600;
+
+    line-height:2;
+
+    color:#ffffff;
+
+    background:rgba(255,255,255,.05);
+
+    border-radius:22px;
+
+    overflow-y:auto;
 
     white-space:pre-wrap;
 
-    overflow:auto;
+}
+
+.summary-text b{
+
+    color:#7EC8FF;
 
 }
 

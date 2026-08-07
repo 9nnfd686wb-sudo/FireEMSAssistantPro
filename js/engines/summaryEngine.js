@@ -154,8 +154,53 @@ export function buildSummary(protocolId, answers, redFlags, urgency) {
         sentences.push(urgencySentence);
     }
 
-    const filtered = sentences.filter(sentence => typeof sentence === 'string' && sentence.trim() !== '');
-    return {
-        summary: filtered.join('\n')
-    };
+    const lines = [];
+
+if (redFlagSentences.length) {
+    lines.push("【レッドフラッグ】");
+    lines.push(...redFlagSentences);
+    lines.push("");
+}
+
+if (locationSentence || radiationSentence || painSentence) {
+    lines.push("【現病歴】");
+
+    if (locationSentence) {
+        lines.push(locationSentence);
+    }
+
+    if (radiationSentence) {
+        lines.push(radiationSentence);
+    }
+
+    if (painSentence) {
+        lines.push(painSentence);
+    }
+
+    lines.push("");
+}
+
+if (historySentence || medicationSentence) {
+
+    lines.push("【既往・内服】");
+
+    if (historySentence) {
+        lines.push(historySentence);
+    }
+
+    if (medicationSentence) {
+        lines.push(medicationSentence);
+    }
+
+    lines.push("");
+}
+
+if (urgencySentence) {
+    lines.push("【緊急度】");
+    lines.push(urgencySentence);
+}
+
+return {
+    summary: lines.join("\n")
+};
 }
