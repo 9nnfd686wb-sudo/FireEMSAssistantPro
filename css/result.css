@@ -621,6 +621,12 @@ h2{
     box-sizing: border-box;
 }
 
+.note-actions {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
 /* ==========================================
    iPadレイアウト
 ========================================== */
@@ -733,8 +739,15 @@ section{
         color:#000 !important;
     }
 
-.note-actions {
-    display: flex;
-    align-items: center;
-    gap: 32px;
+    /* iPad：申し送りボタンの間隔 */
+@media (min-width: 768px) {
+
+    .note-actions {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: flex-end !important;
+        gap: 40px !important;
+    }
+
 }
