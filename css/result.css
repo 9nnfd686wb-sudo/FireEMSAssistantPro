@@ -719,3 +719,256 @@ h2{
         border-color:#d0d0d0 !important;
         color:#000 !important;
     }
+
+
+    /* ==========================================
+   PDF専用レイアウト
+========================================== */
+
+body.pdf-mode {
+    background: #ffffff !important;
+}
+
+body.pdf-mode .header,
+body.pdf-mode .page-footer {
+    display: none !important;
+}
+
+body.pdf-mode .result-page {
+    width: 794px !important;
+    max-width: 794px !important;
+    min-height: 1123px !important;
+
+    margin: 0 !important;
+    padding: 24px !important;
+
+    box-sizing: border-box !important;
+
+    background: #ffffff !important;
+    color: #172033 !important;
+}
+
+/* セクション間 */
+body.pdf-mode .result-page section {
+    margin-bottom: 12px !important;
+}
+
+/* ==========================================
+   緊急度
+========================================== */
+
+body.pdf-mode .urgency-card {
+    display: grid !important;
+
+    grid-template-columns: 38% 62% !important;
+
+    width: 100% !important;
+    height: 190px !important;
+    min-height: 190px !important;
+
+    padding: 0 !important;
+
+    border-radius: 14px !important;
+
+    overflow: hidden !important;
+}
+
+body.pdf-mode .urgency-left {
+    padding: 14px !important;
+    gap: 6px !important;
+
+    border-right: 2px solid rgba(255,255,255,.3);
+}
+
+body.pdf-mode .urgency-title {
+    font-size: 21px !important;
+}
+
+body.pdf-mode .urgency-stars {
+    font-size: 28px !important;
+    letter-spacing: 2px !important;
+}
+
+body.pdf-mode .urgency-label {
+    font-size: 36px !important;
+    line-height: 1.1 !important;
+    margin: 0 !important;
+}
+
+body.pdf-mode .urgency-right {
+    padding: 16px !important;
+}
+
+body.pdf-mode .urgency-header {
+    margin-bottom: 8px !important;
+}
+
+body.pdf-mode .urgency-header h3 {
+    font-size: 20px !important;
+}
+
+body.pdf-mode .action-badge {
+    font-size: 14px !important;
+    padding: 6px 12px !important;
+}
+
+body.pdf-mode .urgency-reasons {
+    margin-top: 8px !important;
+    font-size: 16px !important;
+    line-height: 1.5 !important;
+}
+
+/* ==========================================
+   申し送り
+========================================== */
+
+body.pdf-mode .note-card {
+    width: 100% !important;
+
+    min-height: 0 !important;
+    height: auto !important;
+
+    padding: 0 !important;
+
+    background: #ffffff !important;
+
+    border: 2px solid #164b80 !important;
+    border-radius: 14px !important;
+
+    overflow: hidden !important;
+}
+
+body.pdf-mode .note-header {
+    display: block !important;
+
+    padding: 9px 16px !important;
+
+    background: #103c68 !important;
+}
+
+body.pdf-mode .note-header h2 {
+    color: #ffffff !important;
+
+    font-size: 20px !important;
+
+    margin: 0 !important;
+}
+
+/* PDFではボタンを表示しない */
+body.pdf-mode .note-actions {
+    display: none !important;
+}
+
+body.pdf-mode .summary-wrapper {
+    width: 100% !important;
+
+    height: auto !important;
+    min-height: 0 !important;
+
+    padding: 14px 18px !important;
+
+    background: #ffffff !important;
+
+    overflow: visible !important;
+
+    box-sizing: border-box !important;
+}
+
+body.pdf-mode .summary-text {
+    width: 100% !important;
+
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    background: transparent !important;
+
+    color: #172033 !important;
+
+    font-size: 15px !important;
+    line-height: 1.45 !important;
+
+    overflow: visible !important;
+
+    white-space: pre-wrap !important;
+}
+
+/* ==========================================
+   プロトコル
+========================================== */
+
+body.pdf-mode .protocol-card {
+    width: 100% !important;
+
+    height: 48px !important;
+    min-height: 48px !important;
+
+    padding: 8px !important;
+
+    border-radius: 10px !important;
+}
+
+body.pdf-mode #protocolName {
+    font-size: 18px !important;
+}
+
+/* ==========================================
+   レッドフラッグ
+========================================== */
+
+body.pdf-mode .redflag-card {
+    width: 100% !important;
+
+    min-height: 0 !important;
+    height: auto !important;
+
+    padding: 12px !important;
+
+    border-radius: 12px !important;
+
+    background: #ffffff !important;
+}
+
+body.pdf-mode .redflag-card .section-header {
+    margin-bottom: 8px !important;
+}
+
+body.pdf-mode .redflag-card h2 {
+    font-size: 20px !important;
+}
+
+body.pdf-mode .red-flag-list {
+    display: flex !important;
+
+    flex-wrap: wrap !important;
+
+    gap: 8px !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+body.pdf-mode .red-flag-tag {
+    display: inline-flex !important;
+
+    padding: 7px 12px !important;
+
+    border-radius: 8px !important;
+
+    font-size: 14px !important;
+}
+
+/* ==========================================
+   PDFでは不要
+========================================== */
+
+body.pdf-mode .bottom-actions {
+    display: none !important;
+}
+
+body.pdf-mode #copyMessage {
+    display: none !important;
+}
