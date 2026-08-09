@@ -667,6 +667,146 @@ h2{
 
 }
 
+/* ==========================================
+   iPad：判定結果を1画面に収める
+========================================== */
+
+@media (min-width: 768px) {
+
+    .result-page {
+        max-width: 1280px !important;
+        padding: 8px 18px !important;
+    }
+
+    section {
+        margin-bottom: 8px !important;
+    }
+
+    /* 緊急度 */
+    .urgency-card {
+        min-height: 150px !important;
+        height: 150px !important;
+    }
+
+    .urgency-left {
+        padding: 12px !important;
+        gap: 6px !important;
+    }
+
+    .urgency-stars {
+        font-size: 1.8rem !important;
+    }
+
+    .urgency-label {
+        font-size: 38px !important;
+    }
+
+    .urgency-right {
+        padding: 16px !important;
+    }
+
+    .urgency-header {
+        margin-bottom: 8px !important;
+    }
+
+    .urgency-reasons {
+        margin-top: 4px !important;
+        line-height: 1.4 !important;
+    }
+
+    /* 申し送り */
+    .note-card {
+        min-height: 280px !important;
+        height: 280px !important;
+        padding: 16px !important;
+        gap: 8px !important;
+    }
+
+    .note-header {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        gap: 10px !important;
+    }
+
+    .note-header h2 {
+        font-size: 26px !important;
+    }
+
+    .note-actions {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 12px !important;
+        width: auto !important;
+    }
+
+    .note-actions button {
+        width: 150px !important;
+        min-width: 150px !important;
+        height: 52px !important;
+        min-height: 52px !important;
+        font-size: 16px !important;
+    }
+
+    .summary-wrapper {
+        height: 210px !important;
+        min-height: 210px !important;
+        padding: 16px !important;
+    }
+
+    .summary-text {
+        min-height: 170px !important;
+        font-size: 18px !important;
+        line-height: 1.55 !important;
+    }
+
+    /* プロトコル */
+    .protocol-card {
+        min-height: 55px !important;
+        height: 55px !important;
+    }
+
+    #protocolName {
+        font-size: 1.35rem !important;
+    }
+
+    /* レッドフラッグ */
+    .redflag-card {
+        min-height: 120px !important;
+        height: 120px !important;
+    }
+
+    .redflag-card .section-header {
+        margin-bottom: 8px !important;
+    }
+
+    .red-flag-list {
+        gap: 10px !important;
+    }
+
+    .red-flag-tag {
+        padding: 8px !important;
+        font-size: .9rem !important;
+    }
+
+    /* 保存・PDF */
+    .bottom-actions {
+        margin-top: 6px !important;
+    }
+
+    .bottom-actions button {
+        height: 50px !important;
+        min-width: 140px !important;
+    }
+
+    /* フッター */
+    .page-footer {
+        padding: 4px 0 !important;
+    }
+
+}
+
     .urgency-card.level1{
         background:#d32f2f !important;
         border-color:#b71c1c !important;

@@ -317,3 +317,5 @@ function exportPdf() {
 
 }
     document.addEventListener('DOMContentLoaded', initialize);
+
+    
