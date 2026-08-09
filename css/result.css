@@ -739,15 +739,14 @@ section{
         color:#000 !important;
     }
 
-    /* iPad：申し送りボタンの間隔 */
+ /* iPad：申し送りボタンを縦並び・間隔調整 */
 @media (min-width: 768px) {
 
     .note-actions {
         display: flex !important;
-        flex-direction: row !important;
-        align-items: center !important;
-        justify-content: flex-end !important;
-        gap: 40px !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 30px !important;
     }
 
 }
