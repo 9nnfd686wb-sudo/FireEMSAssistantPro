@@ -281,14 +281,15 @@ async function exportPdf() {
 
     if (summaryElement) {
 
-        const pdfSummary = originalSummary
-            .split("\n")
-            .filter(line => !line.trim().startsWith("緊急度は"))
-            .join("\n")
-            .trim();
+    let pdfSummary = originalSummary;
 
-        summaryElement.textContent = pdfSummary;
-    }
+    // 申し送り末尾の【緊急度】以降をPDFでは削除
+    pdfSummary = pdfSummary
+        .replace(/\n?【緊急度】[\s\S]*$/m, '')
+        .trim();
+
+    summaryElement.textContent = pdfSummary;
+}
 
     /*
      * PDFモード開始
