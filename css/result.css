@@ -858,8 +858,14 @@ h2{
 
     .red-flag-tag {
         padding: 10px 12px;
-        font-size: 10px;
+        font-size: 15px;
     }
+
+    .redflag-card .section-header h2 {
+        font-size: 16px !important;
+    }
+
+}
 
     /* 保存・PDF */
     .bottom-actions {
