@@ -253,7 +253,387 @@ function updateDispatchTime() {
     dispatchTimeElement.textContent = `${hours}:${minutes}`;
 }
 
-function exportPdf() {
+async function exportPdf() {
+
+    const original = document.querySelector(".result-page");
+
+    if (!original) {
+        alert("PDF対象が見つかりません。");
+        return;
+    }
+
+    // ==============================
+    // 現在の判定結果を複製
+    // ==============================
+
+    const pdfTarget = original.cloneNode(true);
+
+    pdfTarget.classList.add("pdf-export");
+
+    // ==============================
+    // PDFに不要な操作ボタンを削除
+    // ==============================
+
+    pdfTarget.querySelectorAll(
+        ".note-actions, .bottom-actions, #copyMessage"
+    ).forEach(element => {
+        element.remove();
+    });
+
+    // ==============================
+    // 申し送りから最後の緊急度行を削除
+    // ==============================
+
+    const summary = pdfTarget.querySelector("#summaryText");
+
+    if (summary) {
+
+        const lines = summary.innerText
+            .split("\n")
+            .filter(line => {
+                return !line.trim().startsWith("緊急度は");
+            });
+
+        summary.textContent = lines.join("\n");
+    }
+
+    // ==============================
+    // PDF専用CSS
+    // ==============================
+
+    const style = document.createElement("style");
+
+    style.textContent = `
+
+        /* =================================
+           PDF全体
+        ================================= */
+
+        .pdf-export {
+
+            width: 794px !important;
+
+            min-height: 1123px !important;
+
+            box-sizing: border-box !important;
+
+            padding: 28px !important;
+
+            margin: 0 !important;
+
+            background: #ffffff !important;
+
+            color: #172033 !important;
+
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "Helvetica Neue",
+                "Yu Gothic",
+                "Hiragino Kaku Gothic ProN",
+                Arial,
+                sans-serif !important;
+
+            overflow: hidden !important;
+
+        }
+
+
+        /* =================================
+           共通
+        ================================= */
+
+        .pdf-export section {
+
+            margin-bottom: 14px !important;
+
+        }
+
+        .pdf-export .card {
+
+            box-shadow: none !important;
+
+        }
+
+
+        /* =================================
+           緊急度
+        ================================= */
+
+        .pdf-export .urgency-card {
+
+            display: grid !important;
+
+            grid-template-columns: 40% 60% !important;
+
+            height: 220px !important;
+
+            min-height: 220px !important;
+
+            padding: 0 !important;
+
+            border-radius: 14px !important;
+
+            overflow: hidden !important;
+
+        }
+
+        .pdf-export .urgency-left {
+
+            padding: 18px !important;
+
+            gap: 8px !important;
+
+        }
+
+        .pdf-export .urgency-title {
+
+            font-size: 24px !important;
+
+        }
+
+        .pdf-export .urgency-stars {
+
+            font-size: 30px !important;
+
+            letter-spacing: 2px !important;
+
+        }
+
+        .pdf-export .urgency-label {
+
+            font-size: 38px !important;
+
+            line-height: 1.1 !important;
+
+        }
+
+        .pdf-export .urgency-right {
+
+            padding: 20px !important;
+
+        }
+
+        .pdf-export .urgency-header h3 {
+
+            font-size: 22px !important;
+
+        }
+
+        .pdf-export .action-badge {
+
+            font-size: 16px !important;
+
+            padding: 7px 14px !important;
+
+        }
+
+        .pdf-export .urgency-reasons {
+
+            font-size: 17px !important;
+
+            line-height: 1.6 !important;
+
+        }
+
+
+        /* =================================
+           申し送り
+        ================================= */
+
+        .pdf-export .note-card {
+
+            height: auto !important;
+
+            min-height: 0 !important;
+
+            padding: 0 !important;
+
+            border-radius: 14px !important;
+
+            overflow: hidden !important;
+
+            background: #ffffff !important;
+
+            border: 2px solid #164b80 !important;
+
+        }
+
+        .pdf-export .note-header {
+
+            display: block !important;
+
+            padding: 10px 16px !important;
+
+            background: #103c68 !important;
+
+            color: #ffffff !important;
+
+        }
+
+        .pdf-export .note-header h2 {
+
+            margin: 0 !important;
+
+            font-size: 21px !important;
+
+            color: #ffffff !important;
+
+        }
+
+        .pdf-export .summary-wrapper {
+
+            height: auto !important;
+
+            min-height: 0 !important;
+
+            padding: 16px 20px !important;
+
+            background: #ffffff !important;
+
+            overflow: visible !important;
+
+        }
+
+        .pdf-export .summary-text {
+
+            height: auto !important;
+
+            min-height: 0 !important;
+
+            max-height: none !important;
+
+            overflow: visible !important;
+
+            margin: 0 !important;
+
+            padding: 0 !important;
+
+            color: #172033 !important;
+
+            background: transparent !important;
+
+            font-size: 16px !important;
+
+            font-weight: 600 !important;
+
+            line-height: 1.5 !important;
+
+            white-space: pre-wrap !important;
+
+        }
+
+
+        /* =================================
+           プロトコル
+        ================================= */
+
+        .pdf-export .protocol-card {
+
+            min-height: 55px !important;
+
+            height: 55px !important;
+
+            padding: 8px !important;
+
+            border-radius: 12px !important;
+
+            background: #5d9de0 !important;
+
+        }
+
+        .pdf-export #protocolName {
+
+            font-size: 20px !important;
+
+            color: #ffffff !important;
+
+        }
+
+
+        /* =================================
+           レッドフラッグ
+        ================================= */
+
+        .pdf-export .redflag-card {
+
+            min-height: 100px !important;
+
+            height: auto !important;
+
+            padding: 14px !important;
+
+            border-radius: 14px !important;
+
+        }
+
+        .pdf-export .redflag-card .section-header {
+
+            margin-bottom: 10px !important;
+
+        }
+
+        .pdf-export .redflag-card h2 {
+
+            font-size: 21px !important;
+
+        }
+
+        .pdf-export .red-flag-list {
+
+            display: flex !important;
+
+            flex-wrap: wrap !important;
+
+            gap: 8px !important;
+
+        }
+
+        .pdf-export .red-flag-tag {
+
+            display: inline-flex !important;
+
+            padding: 7px 12px !important;
+
+            border-radius: 8px !important;
+
+            font-size: 14px !important;
+
+        }
+
+
+        /* =================================
+           PDFでは非表示
+        ================================= */
+
+        .pdf-export .answer-btn,
+        .pdf-export .share-btn,
+        .pdf-export .copy-btn,
+        .pdf-export .bottom-actions,
+        .pdf-export .note-actions {
+
+            display: none !important;
+
+        }
+
+    `;
+
+    // ==============================
+    // 一時的に表示領域へ配置
+    // ==============================
+
+    pdfTarget.style.position = "fixed";
+    pdfTarget.style.left = "0";
+    pdfTarget.style.top = "0";
+    pdfTarget.style.zIndex = "-9999";
+    pdfTarget.style.opacity = "1";
+
+    document.body.appendChild(style);
+    document.body.appendChild(pdfTarget);
+
+    // ==============================
+    // PDFファイル名
+    // ==============================
 
     const protocol =
         document.getElementById("protocolName")?.textContent.trim()
@@ -266,56 +646,81 @@ function exportPdf() {
     const now = new Date();
 
     const yyyy = now.getFullYear();
-
     const mm = String(now.getMonth() + 1).padStart(2, "0");
-
     const dd = String(now.getDate()).padStart(2, "0");
-
     const hh = String(now.getHours()).padStart(2, "0");
-
     const min = String(now.getMinutes()).padStart(2, "0");
 
     const fileName =
-        `${protocol}_${urgency}_${yyyy}-${mm}-${dd}_${hh}-${min}.pdf`;
+        `消防救急アシスタント_${protocol}_${urgency}_${yyyy}-${mm}-${dd}_${hh}-${min}.pdf`;
 
-    html2pdf()
-        .set({
+    // ==============================
+    // PDF生成
+    // ==============================
 
-            filename: fileName,
+    try {
 
-            margin: 10,
+        await html2pdf()
+            .set({
 
-            image: {
+                margin: 0,
 
-                type: "jpeg",
+                filename: fileName,
 
-                quality: 1
+                image: {
+                    type: "jpeg",
+                    quality: 0.98
+                },
 
-            },
+                html2canvas: {
 
-            html2canvas: {
+                    scale: 1.5,
 
-                scale: 2
+                    useCORS: true,
 
-            },
+                    backgroundColor: "#ffffff",
 
-            jsPDF: {
+                    logging: false
 
-                unit: "mm",
+                },
 
-                format: "a4",
+                jsPDF: {
 
-                orientation: "portrait"
+                    unit: "mm",
 
-            }
+                    format: "a4",
 
-        })
+                    orientation: "portrait"
 
-        .from(document.querySelector(".result-page"))
+                },
 
-        .save();
+                pagebreak: {
+
+                    mode: ["css", "legacy"]
+
+                }
+
+            })
+
+            .from(pdfTarget)
+
+            .save();
+
+    } catch (error) {
+
+        console.error("PDF生成エラー:", error);
+
+        alert("PDFの生成に失敗しました。");
+
+    } finally {
+
+        // PDF生成後に削除
+
+        pdfTarget.remove();
+        style.remove();
+
+    }
 
 }
     document.addEventListener('DOMContentLoaded', initialize);
-
     
