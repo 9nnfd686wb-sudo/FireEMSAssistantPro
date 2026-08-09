@@ -266,111 +266,79 @@ h2{
 ========================================== */
 
 .note-card{
-
-    min-height:480px;
-
+    min-height: 420px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-radius: 28px;
 }
 
 .note-header{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    margin-bottom:12px;
-
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 0;
 }
 
 .note-header h2{
-
-    margin:0;
-
-    font-size:1.6rem;
-
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 800;
 }
 
 .note-actions{
-
-    margin-left:auto;
-
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
 }
 
-.copy-btn{
-
-    width:120px;
-
-    height:52px;
-
-    font-size:18px;
-
-    border-radius:14px;
-
-}
-
-.copy-btn{
-
-    width:130px;
-
-    height:56px;
-
-    font-size:20px;
-
-}
-
-.answer-btn{
-
-    width:150px;
-
-    height:56px;
-
-    font-size:18px;
-
-    font-weight:700;
-
-    border-radius:16px;
-
-}
-
-.answer-btn:hover{
-
-    background:#546e7a;
-
+.summary-wrapper{
+    width: 100%;
+    flex: 1;
+    min-height: 280px;
+    background: #295889;
+    border-radius: 24px;
+    padding: 22px;
+    box-sizing: border-box;
 }
 
 .summary-text{
-
-    width:100%;
-
-    min-height:360px;
-
-    max-height:360px;
-
-    padding:28px;
-
-    font-size:1.45rem;
-
-    font-weight:600;
-
-    line-height:2;
-
-    color:#ffffff;
-
-    background:rgba(255,255,255,.05);
-
-    border-radius:22px;
-
-    overflow-y:auto;
-
-    white-space:pre-wrap;
-
+    width: 100%;
+    min-height: 240px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    color: #ffffff;
+    font-size: 1.15rem;
+    line-height: 1.9;
+    white-space: pre-wrap;
+    overflow-y: auto;
 }
 
 .summary-text b{
 
     color:#7EC8FF;
 
+}
+
+.note-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.note-actions button {
+    width: 160px;
+    height: 56px;
+    padding: 0;
+    font-size: 1rem;
+    font-weight: 700;
+    box-sizing: border-box;
 }
 
 /* ==========================================
@@ -739,14 +707,3 @@ section{
         color:#000 !important;
     }
 
- /* iPad：申し送りボタンを縦並び・間隔調整 */
-@media (min-width: 768px) {
-
-    .note-actions {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: stretch !important;
-        gap: 30px !important;
-    }
-
-}
