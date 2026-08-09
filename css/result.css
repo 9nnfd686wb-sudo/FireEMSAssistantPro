@@ -847,7 +847,7 @@ h2{
     /* レッドフラッグ */
     .redflag-card {
         min-height: 0;
-        padding: 8px;
+        padding: 16px;
     }
 
     .red-flag-list {
@@ -858,7 +858,7 @@ h2{
 
     .red-flag-tag {
         padding: 10px 12px;
-        font-size: 15px;
+        font-size: 10px;
     }
 
     /* 保存・PDF */
