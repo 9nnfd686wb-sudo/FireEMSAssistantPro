@@ -720,7 +720,7 @@ h2{
         color:#000 !important;
     }
 
-    /* ==========================================
+/* ==========================================
    iPhone 通常画面
 ========================================== */
 
@@ -737,7 +737,11 @@ h2{
         margin-bottom: 12px;
     }
 
-    /* 緊急度 */
+
+    /* ==========================================
+       緊急度
+    ========================================== */
+
     .urgency-card {
         display: flex;
         flex-direction: column;
@@ -788,7 +792,11 @@ h2{
         line-height: 1.7;
     }
 
-    /* 申し送り */
+
+    /* ==========================================
+       申し送り
+    ========================================== */
+
     .note-card {
         min-height: 0;
         padding: 14px;
@@ -835,7 +843,11 @@ h2{
         overflow: visible;
     }
 
-    /* プロトコル */
+
+    /* ==========================================
+       プロトコル
+    ========================================== */
+
     .protocol-card {
         min-height: 60px;
     }
@@ -844,30 +856,50 @@ h2{
         font-size: 20px;
     }
 
-    /* レッドフラッグ */
+
+    /* ==========================================
+       レッドフラッグ
+       iPhoneでは見出しを上に配置
+    ========================================== */
+
     .redflag-card {
         min-height: 0;
         padding: 16px;
     }
 
-    .red-flag-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
+    .redflag-card .section-header {
+        display: block !important;
+        width: 100% !important;
+        margin-bottom: 14px !important;
     }
 
-    .red-flag-tag {
-        padding: 10px 12px;
-        font-size: 15px;
-    }
-
+    /* 🚩 レッドフラッグ */
     .redflag-card .section-header h2 {
-        font-size: 16px !important;
+        font-size: 22px !important;
+        white-space: nowrap !important;
+        margin: 0 !important;
     }
 
-}
+    /* レッドフラッグのタグ */
+    .redflag-card .red-flag-list {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: flex-start !important;
+        gap: 8px !important;
+        width: 100% !important;
+    }
 
-    /* 保存・PDF */
+    .redflag-card .red-flag-tag {
+        font-size: 13px !important;
+        padding: 8px 10px !important;
+        line-height: 1.3 !important;
+    }
+
+
+    /* ==========================================
+       保存・PDF
+    ========================================== */
+
     .bottom-actions {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -878,7 +910,9 @@ h2{
         min-width: 0;
         width: 100%;
     }
+
 }
+
 
 /* ==========================================
    PDF専用レイアウト
