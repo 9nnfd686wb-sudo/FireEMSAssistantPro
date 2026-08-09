@@ -720,6 +720,160 @@ h2{
         color:#000 !important;
     }
 
+    /* ==========================================
+   iPhone 通常画面
+========================================== */
+
+@media screen and (max-width: 767px) {
+
+    .result-page {
+        width: 100%;
+        max-width: 100%;
+        padding: 12px;
+        box-sizing: border-box;
+    }
+
+    section {
+        margin-bottom: 12px;
+    }
+
+    /* 緊急度 */
+    .urgency-card {
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+        border-radius: 18px;
+    }
+
+    .urgency-left {
+        padding: 20px 14px;
+        border-right: none;
+        border-bottom: 2px solid rgba(255,255,255,.25);
+        gap: 8px;
+    }
+
+    .urgency-title {
+        font-size: 25px;
+    }
+
+    .urgency-stars {
+        font-size: 28px;
+    }
+
+    .urgency-label {
+        font-size: 38px;
+    }
+
+    .urgency-right {
+        padding: 16px;
+    }
+
+    .urgency-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .urgency-header h3 {
+        font-size: 20px;
+    }
+
+    .action-badge {
+        align-self: stretch;
+        min-height: 44px;
+    }
+
+    .urgency-reasons {
+        font-size: 16px;
+        line-height: 1.7;
+    }
+
+    /* 申し送り */
+    .note-card {
+        min-height: 0;
+        padding: 14px;
+        border-radius: 20px;
+    }
+
+    .note-header {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .note-header h2 {
+        font-size: 25px;
+    }
+
+    .note-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+    }
+
+    .note-actions button {
+        width: 100% !important;
+        min-width: 0 !important;
+        height: 54px !important;
+        font-size: 17px !important;
+    }
+
+    .summary-wrapper {
+        min-height: 0;
+        height: auto;
+        padding: 16px;
+        border-radius: 16px;
+    }
+
+    .summary-text {
+        min-height: 0;
+        height: auto;
+        font-size: 17px;
+        line-height: 1.7;
+        overflow: visible;
+    }
+
+    /* プロトコル */
+    .protocol-card {
+        min-height: 60px;
+    }
+
+    #protocolName {
+        font-size: 20px;
+    }
+
+    /* レッドフラッグ */
+    .redflag-card {
+        min-height: 0;
+        padding: 16px;
+    }
+
+    .red-flag-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .red-flag-tag {
+        padding: 10px 12px;
+        font-size: 15px;
+    }
+
+    /* 保存・PDF */
+    .bottom-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .bottom-actions button {
+        min-width: 0;
+        width: 100%;
+    }
+}
+
 /* ==========================================
    PDF専用レイアウト
    A4・1ページ・救急隊共有用
