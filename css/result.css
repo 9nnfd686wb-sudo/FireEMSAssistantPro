@@ -596,90 +596,74 @@ h2{
 }
 
 /* ==========================================
-   iPadレイアウト
+   iPad 申し送りレイアウト
 ========================================== */
 
-@media (min-width:768px){
+@media (min-width: 768px) {
 
-.result-page{
+    .note-card {
+        min-height: 430px !important;
+        padding: 24px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 16px !important;
+    }
 
-    max-width:1280px;
+    /* タイトル */
+    .note-header {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        width: 100% !important;
+        gap: 14px !important;
+    }
 
-    margin:auto;
+    .note-header h2 {
+        font-size: 32px !important;
+        margin: 0 !important;
+    }
 
-    padding:12px 18px;
+    /* ボタンを上側に横並び */
+    .note-actions {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: flex-end !important;
+        align-items: center !important;
+        gap: 20px !important;
+        width: 100% !important;
+        flex-wrap: nowrap !important;
+    }
 
-}
+    /* 回答一覧・救急隊へ共有 */
+    .note-actions button {
+        width: 160px !important;
+        min-width: 160px !important;
+        height: 60px !important;
+        min-height: 60px !important;
+        padding: 0 !important;
+        font-size: 18px !important;
+        font-weight: 700 !important;
+        flex-shrink: 0 !important;
+    }
 
-section{
+    /* 申し送り本文 */
+    .summary-wrapper {
+        width: 100% !important;
+        height: 280px !important;
+        min-height: 280px !important;
+        padding: 24px !important;
+        box-sizing: border-box !important;
+        border-radius: 24px !important;
+    }
 
-    margin-bottom:12px;
-
-}
-
-.card{
-
-    padding:16px;
-
-    border-radius:18px;
-
-}
-
-.urgency-card{
-
-    min-height:170px;
-
-}
-
-.note-card{
-
-    min-height:460px;
-
-}
-
-.summary-wrapper{
-
-    height:340px;
-
-    padding:24px;
-
-}
-
-.summary-text{
-
-    font-size:1.45rem;
-
-    line-height:2;
-
-    font-weight:600;
-
-}
-
-.redflag-card{
-
-    min-height:130px;
-
-}
-
-.answer-card{
-
-    min-height:180px;
-
-}
-
-.qa-list{
-
-    max-height:120px;
-
-    overflow:auto;
-
-}
-
-.bottom-actions{
-
-    margin-top:12px;
-
-}
+    .summary-text {
+        width: 100% !important;
+        min-height: 230px !important;
+        margin: 0 !important;
+        font-size: 24px !important;
+        line-height: 1.8 !important;
+        font-weight: 600 !important;
+    }
 
 }
 
