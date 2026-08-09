@@ -595,6 +595,32 @@ h2{
 
 }
 
+/* ==============================
+   救急隊共有ボタン
+============================== */
+
+.share-btn {
+    width: 150px;
+    height: 56px;
+    padding: 0;
+
+    border: none;
+    border-radius: 16px;
+
+    background: #16a34a;
+    color: #ffffff;
+
+    font-size: 18px;
+    font-weight: 700;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
 /* ==========================================
    iPadレイアウト
 ========================================== */

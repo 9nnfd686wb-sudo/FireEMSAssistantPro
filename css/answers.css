@@ -52,6 +52,44 @@
     font-weight:600;
 }
 
+.back-btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    width:220px;
+
+    height:60px;
+
+    font-size:22px;
+
+    font-weight:700;
+
+    border-radius:16px;
+
+    background:#1976D2;
+
+    color:#fff;
+
+    border:none;
+
+    cursor:pointer;
+
+    text-decoration:none;
+
+    transition:.2s;
+
+}
+
+.back-btn:hover{
+
+    background:#1565C0;
+
+}
+
 @media (min-width:768px){
 
 .answer-page{
@@ -73,6 +111,16 @@ display:grid;
 grid-template-columns:350px 1fr;
 
 align-items:center;
+
+}
+
+.back-btn{
+
+    width:260px;
+
+    height:70px;
+
+    font-size:24px;
 
 }
 

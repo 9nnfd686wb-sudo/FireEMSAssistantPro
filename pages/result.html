@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="../css/components.css">
     <link rel="stylesheet" href="../css/result.css">
 </head>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
 <body>
 
 <header class="header">
@@ -78,14 +81,13 @@
                 <h2>📝 申し送り</h2>
                 <div class="note-actions">
 
-    <button id="copySummaryBtn"
-            class="copy-btn">
-        コピー
-    </button>
-
     <button id="answerPageBtn"
             class="answer-btn">
         📋 回答一覧
+    </button>
+
+    <button id="shareBtn" class="share-btn">
+    📤 救急隊へ共有
     </button>
 
 </div>
@@ -145,7 +147,9 @@
 
     <section class="bottom-actions">
         <button id="saveBtn" class="secondary-btn">💾 保存</button>
-        <button type="button" class="disabled-btn" disabled>PDF</button>
+        <button id="pdfBtn" class="secondary-btn">
+            PDF
+        </button>
     </section>
 </main>
 <footer class="page-footer">

@@ -97,53 +97,97 @@ function renderSummary(summary) {
     }
 }
 
-function showCopyMessage() {
-    if (!copyMessage) {
-        return;
+async function shareResult() {
+
+    const protocol =
+        protocolNameElement?.textContent.trim() || '症状';
+
+    const level =
+        urgencyLevel?.textContent.trim() || '';
+
+    const label =
+        urgencyLabel?.textContent.trim() || '';
+
+    const stars =
+        urgencyStars?.textContent.trim() || '';
+
+    const action =
+        recommendedAction?.textContent.trim() || '';
+
+    const reasons = [...document.querySelectorAll('#urgencyReasons li')]
+        .map(item => item.textContent.trim())
+        .filter(Boolean);
+
+    const redFlags = [...document.querySelectorAll('#redFlagList .red-flag-tag')]
+        .map(item => {
+            const text = item.querySelector('span:last-child');
+            return text ? text.textContent.trim() : '';
+        })
+        .filter(Boolean);
+
+    let summary =
+    summaryText?.textContent.trim() || '';
+
+summary = summary.replace(
+    /\n?【緊急度】\n?緊急度は.*?です。\s*$/s,
+    ''
+).trim();
+
+    let text = '';
+
+    text += `🚑 消防救急アシスタント Pro\n`;
+    text += `【判定結果】\n\n`;
+
+    text += `■ 緊急度\n`;
+    text += `${stars}\n`;
+    text += `${level}　${label}\n`;
+    text += `${action}\n\n`;
+
+    if (reasons.length > 0) {
+        text += `■ 判定理由\n`;
+        reasons.forEach(reason => {
+            text += `・${reason}\n`;
+        });
+        text += `\n`;
     }
 
-    copyMessage.hidden = false;
-    if (copyMessageTimeout) {
-        clearTimeout(copyMessageTimeout);
+    text += `■ レッドフラッグ\n`;
+
+    if (redFlags.length > 0) {
+        redFlags.forEach(flag => {
+            text += `🚩 ${flag}\n`;
+        });
+    } else {
+        text += `なし\n`;
     }
 
-    copyMessageTimeout = window.setTimeout(() => {
-        copyMessage.hidden = true;
-        copyMessageTimeout = null;
-    }, 3000);
-}
+    text += `\n`;
 
-function fallbackCopyText(text) {
-    const textarea = document.createElement('textarea');
-    textarea.value = text;
-    textarea.setAttribute('readonly', '');
-    textarea.style.position = 'absolute';
-    textarea.style.left = '-9999px';
-    document.body.appendChild(textarea);
-    textarea.select();
-    document.execCommand('copy');
-    document.body.removeChild(textarea);
-    showCopyMessage();
-}
+    text += `■ 申し送り\n`;
+    text += `${summary}\n`;
 
-function copySummary() {
-    if (!summaryText) {
-        return;
+    if (navigator.share) {
+
+        try {
+
+            await navigator.share({
+                title: '判定結果',
+                text: text
+            });
+
+        } catch (error) {
+
+            if (error.name !== 'AbortError') {
+                console.error('共有エラー:', error);
+            }
+
+        }
+
+    } else {
+
+        alert('この端末では共有機能を利用できません。');
+
     }
-
-    const text = summaryText.textContent.trim();
-    if (!text) {
-        return;
-    }
-
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text)
-            .then(showCopyMessage)
-            .catch(() => fallbackCopyText(text));
-        return;
-    }
-
-    fallbackCopyText(text);
 }
 
 async function renderResult() {
@@ -174,9 +218,17 @@ function initialize() {
     renderResult();
     updateDispatchTime();
 
-    if (copySummaryBtn) {
-        copySummaryBtn.addEventListener('click', copySummary);
-    }
+    const shareBtn = document.getElementById('shareBtn');
+
+if (shareBtn) {
+    shareBtn.addEventListener('click', shareResult);
+}
+
+    const pdfBtn = document.getElementById("pdfBtn");
+
+if (pdfBtn) {
+    pdfBtn.addEventListener("click", exportPdf);
+}
 
     const answerPageBtn = document.getElementById('answerPageBtn');
 
@@ -199,5 +251,69 @@ function updateDispatchTime() {
     const hours = String(now.getHours()).padStart(2, '0');
     const minutes = String(now.getMinutes()).padStart(2, '0');
     dispatchTimeElement.textContent = `${hours}:${minutes}`;
+}
+
+function exportPdf() {
+
+    const protocol =
+        document.getElementById("protocolName")?.textContent.trim()
+        || "症例";
+
+    const urgency =
+        document.getElementById("urgencyLevel")?.textContent.trim()
+        || "LEVEL";
+
+    const now = new Date();
+
+    const yyyy = now.getFullYear();
+
+    const mm = String(now.getMonth() + 1).padStart(2, "0");
+
+    const dd = String(now.getDate()).padStart(2, "0");
+
+    const hh = String(now.getHours()).padStart(2, "0");
+
+    const min = String(now.getMinutes()).padStart(2, "0");
+
+    const fileName =
+        `${protocol}_${urgency}_${yyyy}-${mm}-${dd}_${hh}-${min}.pdf`;
+
+    html2pdf()
+        .set({
+
+            filename: fileName,
+
+            margin: 10,
+
+            image: {
+
+                type: "jpeg",
+
+                quality: 1
+
+            },
+
+            html2canvas: {
+
+                scale: 2
+
+            },
+
+            jsPDF: {
+
+                unit: "mm",
+
+                format: "a4",
+
+                orientation: "portrait"
+
+            }
+
+        })
+
+        .from(document.querySelector(".result-page"))
+
+        .save();
+
 }
     document.addEventListener('DOMContentLoaded', initialize);
